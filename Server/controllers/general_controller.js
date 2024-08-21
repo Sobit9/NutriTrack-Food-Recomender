@@ -19,7 +19,7 @@ export const getDashboardStats = async (req, res) => {
     const currentYear = 2023;
     const currentDay = "2023-05-15";
 
-    /* Recent Transactions */
+    /* Recent Log of Foods */
     const foodLog = await FoodLog.find()
       .limit(50)
       .sort({ createdOn: -1 });

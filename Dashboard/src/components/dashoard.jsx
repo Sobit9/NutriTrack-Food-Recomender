@@ -29,25 +29,22 @@ export default function dashoard() {
     {
       field: "_id",
       headerName: "ID",
-      flex: 1,
+      flex: 0.5,
     },
     {
       field: "createdAt",
-      headerName: "CreatedAt",
-      flex: 1,
+      headerName: "LoggedAt",
+      flex: 0.5,
     },
     {
       field: "food",
       headerName: "# of Food",
-      flex: 0.5,
-      sortable: false,
-      renderCell: (params) => params.value.length,
+      flex: 1,
     },
     {
       field: "calories",
       headerName: "Calories",
       flex: 1,
-      renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
     },
   ];
   return (

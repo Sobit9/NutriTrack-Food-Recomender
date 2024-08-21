@@ -54,7 +54,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
             gap="3rem"
             p="0.1rem 1.5rem"
           >
-            <InputBase placeholder="Search..." />
+            {/* <InputBase placeholder="Search..." /> */}
             <IconButton>
               <Search />
             </IconButton>

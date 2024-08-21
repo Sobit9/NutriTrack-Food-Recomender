@@ -20,6 +20,7 @@ import AboutUs from "./components/AboutUs";
 import PrivateRoute from "./components/PrivateRoute";
 import ProtectedComponent from "./components/ProtectedComponent";
 import { AuthProvider } from "./components/Loginpage/authProvider";
+import Admins from "./components/Admin";
 function App() {
   const mode = useSelector((state) => state.global.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/daily" element={<Daily />} />
                 <Route path="/monthly" element={<Monthly />} />
                 <Route path="/breakdown" element={<BreakdownChart />} />
+                <Route path="/admins" element={<Admins />} />
               </Route>
             </Routes>
           </AuthProvider>
