@@ -2,7 +2,6 @@ import React from "react";
 import BannerBackground from "../assets/home-banner-background.png";
 import BannerImage from "../assets/homeimg.png";
 import { FiArrowRight } from "react-icons/fi";
-import { Link } from "@mui/material";
 const Home = () => {
   return (
     <div className="home-container">

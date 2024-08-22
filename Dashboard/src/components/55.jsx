@@ -1,12 +1,11 @@
 import React from "react";
 import { useLayoutEffect, useRef } from "react";
 import AboutBackground from "../assets/about-background.png";
-import img1 from "../assets/fruit.png";
-import img2 from "../assets/vegg.png";
-import img3 from "../assets/vegmix.png";
-import img4 from "../assets/vegg.png";
-import img5 from "../assets/vegmix.png";
-
+import img1 from "../assets/vegmeal.png";
+import img2 from "../assets/nonveg.png";
+import img3 from "../assets/keto.png";
+import img4 from "../assets/carnivore.png";
+import img5 from "../assets/paleo.png";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -139,29 +138,45 @@ const Work = () => {
       <div className="infobox501">
         <div className="textbox501">
           <div className="textbox5011">
-            <h2 className="textslider1">so</h2>
-            <h3 className="textslider1">Know</h3>
-            <h4 className="textslider1">What You Eat</h4>
+            <h2 className="textslider1">So</h2>
+            <h3 className="textslider1" style={{ color: "red" }}>
+              Know
+            </h3>
+            <h4 className="textslider1" style={{ color: "yellow" }}>
+              What You Eat
+            </h4>
           </div>
         </div>
         <div className="imzoombox501">
           <div className="imzoombox502 ">
             <div className="imzoombox5011 leftslide">
-              <img src={img1}></img>
+              <img src={img2}></img>
             </div>
             <div className="imzoombox5012 rightslide">
-              <img src={img1}></img>
+              <img src={img3}></img>
             </div>
             <div className="imzoombox5013 middleslide">
               <img src={img1} className="imzoombox50131"></img>
-              <h2 className="imzoombox50132">Keto</h2>
-              <div className="barchart"></div>
+              <h2 className="imzoombox50132">Veg</h2>
+              <div className="barchart">
+                <div className="vegchart">
+                  <div className="chartsvg">
+                    <h2>Carb:</h2> <div className="carb101"></div>
+                  </div>
+                  <div className="chartsvg2">
+                    <h2>Prot:</h2> <div className="prot101"></div>
+                  </div>
+                  <div className="chartsvg3">
+                    <h2>Fat:</h2> <div className="fat101"></div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="imzoombox5014 leftslide">
-              <img src={img1}></img>
+              <img src={img4}></img>
             </div>
             <div className="imzoombox5015 rightslide">
-              <img src={img1}></img>
+              <img src={img5}></img>
             </div>
           </div>
           <div className="imzoombox503"></div>
@@ -170,8 +185,21 @@ const Work = () => {
       <div className="infobox502">
         <div className="infobox5021 blocker">
           <div className="infobox502textleft ">
-            <h2>Veg</h2>
-            <div className="barchart2"></div>
+            <h2>Non Veg</h2>
+            <div className="barchart2">
+              <div className="chartfoodd">
+                <h2>Carb:</h2>
+                <div className="carb102"></div>
+              </div>
+              <div className="chartfoodd">
+                <h2>Prot:</h2>
+                <div className="prot102"></div>
+              </div>
+              <div className="chartfoodd">
+                <h2>Fat:</h2>
+                <div className="fat102"></div>
+              </div>
+            </div>
           </div>
           <div className="infobox502img ">
             <img src={img2}></img>
@@ -182,14 +210,40 @@ const Work = () => {
             <img src={img3}></img>
           </div>
           <div className="infobox502textright">
-            <h2>Veg</h2>
-            <div className="barchart2"></div>
+            <h2>Keto</h2>
+            <div className="barchart2">
+              <div className="chartfoodd2">
+                <h2>Carb:</h2>
+                <div className="carb103"></div>
+              </div>
+              <div className="chartfoodd2">
+                <h2>Prot:</h2>
+                <div className="prot103"></div>
+              </div>
+              <div className="chartfoodd2">
+                <h2>Fat:</h2>
+                <div className="fat103"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="infobox5021 blocker">
           <div className="infobox502textleft">
-            <h2>Veg</h2>
-            <div className="barchart2"></div>
+            <h2>Carnivore</h2>
+            <div className="barchart2">
+              <div className="chartfoodd">
+                <h2>Carb:</h2>
+                <div className="carb104"></div>
+              </div>
+              <div className="chartfoodd">
+                <h2>Prot:</h2>
+                <div className="prot104"></div>
+              </div>
+              <div className="chartfoodd">
+                <h2>Fat:</h2>
+                <div className="fat104"></div>
+              </div>
+            </div>
           </div>
           <div className="infobox502img ">
             <img src={img4}></img>
@@ -200,8 +254,21 @@ const Work = () => {
             <img src={img5}></img>
           </div>
           <div className="infobox502textright">
-            <h2>Veg</h2>
-            <div className="barchart2"></div>
+            <h2>Paleo</h2>
+            <div className="barchart2">
+              <div className="chartfoodd">
+                <h2>Carb:</h2>
+                <div className="carb102"></div>
+              </div>
+              <div className="chartfoodd">
+                <h2>Prot:</h2>
+                <div className="prot102"></div>
+              </div>
+              <div className="chartfoodd">
+                <h2>Carb:</h2>
+                <div className="fat102"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

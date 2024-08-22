@@ -7,8 +7,8 @@ import { FaFacebookF } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="footer-wrapper sm:flex-col">
-      <div className="footer-section-one ">
+    <div className="footer-wrapper">
+      <div className="footer-section-one">
         <div className="footer-logo-container">
           <img src={Logo} alt="" />
         </div>
@@ -19,7 +19,7 @@ const Footer = () => {
           <FaFacebookF />
         </div>
       </div>
-      <div className="footer-section-two sm:flex-col sm:mt-8">
+      <div className="footer-section-two">
         <div className="footer-section-columns">
           <span>Qualtiy</span>
           <span>Help</span>
@@ -28,7 +28,7 @@ const Footer = () => {
           <span>Testimonials</span>
           <span>Work</span>
         </div>
-        <div className="footer-section-columns sm:my-4">
+        <div className="footer-section-columns">
           <span>244-5333-7783</span>
           <span>hello@food.com</span>
           <span>press@food.com</span>

@@ -1,14 +1,10 @@
 import React from "react";
 
 import { useRef, useState, useEffect } from "react";
-import img1 from "../assets/control-img-1.png";
-import img2 from "../assets/control-img-2.png";
-import img3 from "../assets/control-img-3.png";
-import img4 from "../assets/control-img-4.png";
-import img5 from "../assets/control-img-1.png";
-import img6 from "../assets/control-img-2.png";
-import img7 from "../assets/control-img-3.png";
-import img8 from "../assets/control-img-4.png";
+import img1 from "../assets/momo.png";
+import img2 from "../assets/chowmein.png";
+import img3 from "../assets/roti.png";
+import img4 from "../assets/samosa.png";
 
 const Aii = () => {
   const circleref = useRef(null);
@@ -43,7 +39,7 @@ const Aii = () => {
     }, 7000);
   };
 
-  intervalfn();
+  // intervalfn();
 
   const intervalfn2 = (a) => {
     let i = 0,
@@ -82,7 +78,7 @@ const Aii = () => {
     }, 7000);
   };
 
-  intervalfn2(rectangleref);
+  // intervalfn2(rectangleref);
 
   const intervalfn3 = (a) => {
     let i = 1,
@@ -120,7 +116,7 @@ const Aii = () => {
     }, 7000);
   };
 
-  intervalfn3(controlref);
+  // intervalfn3(controlref);
 
   const handleclick = (a) => {
     console.log(a);
@@ -167,9 +163,9 @@ const Aii = () => {
             <div
               onClick={() => handleclick(3)}
               ref={controlref1}
-              className="asss"
+              className="asss active"
             >
-              <img src={img5} alt="" />
+              <img src={img1} alt="" />
             </div>
 
             <div
@@ -177,7 +173,7 @@ const Aii = () => {
               ref={controlref2}
               className="asss"
             >
-              <img src={img6} alt="" />
+              <img src={img2} alt="" />
             </div>
 
             <div
@@ -185,7 +181,7 @@ const Aii = () => {
               ref={controlref3}
               className="asss"
             >
-              <img src={img8} alt="" />
+              <img src={img4} alt="" />
             </div>
 
             <div
@@ -193,18 +189,48 @@ const Aii = () => {
               ref={controlref4}
               className="asss"
             >
-              <img src={img7} alt="" />
+              <img src={img3} alt="" />
             </div>
           </div>
-          <div ref={rectangleref1} className="carouselz z1"></div>
+          <div ref={rectangleref1} className="carouselz z1">
+            <h2>Chowmein</h2>
+            <div className="foodinfoo">
+              <p>Serving Weight: 453g</p>
+              <p>Calories: 700</p>
+              <p>Carbs: 82g</p>
+              <p>Protein: 16g</p>
+              <p>Fat: 34g</p>
+            </div>
+          </div>
           <div ref={rectangleref2} className="carouselz z2">
-            {" "}
+            <h2>Samosa</h2>
+            <div className="foodinfoo">
+              <p>Serving Weight: 300g</p>
+              <p>Calories: 783</p>
+              <p>Carbs: 72g</p>
+              <p>Protein: 10.5g</p>
+              <p>Fat: 51g</p>
+            </div>
           </div>
           <div ref={rectangleref3} className="carouselz z3">
-            {" "}
+            <h2>Roti</h2>
+            <div className="foodinfoo">
+              <p>Serving Weight: 280g</p>
+              <p>Calories: 600</p>
+              <p>Carbs: 90g</p>
+              <p>Protein: 15.5g</p>
+              <p>Fat: 18.5g</p>
+            </div>
           </div>
           <div ref={rectangleref4} className="carouselz z4">
-            {" "}
+            <h2>Chicken Momo:</h2>
+            <div className="foodinfoo">
+              <p>Serving Weight: 360g</p>
+              <p>Calories: 610</p>
+              <p>Carbs: 72g</p>
+              <p>Protein: 34g</p>
+              <p>Fat: 22g</p>
+            </div>
           </div>
         </div>
       </div>

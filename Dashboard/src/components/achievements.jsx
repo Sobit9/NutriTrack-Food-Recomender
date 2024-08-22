@@ -1,5 +1,11 @@
-import React from "react";
+import React from 'react'
 
-export default function achievements() {
-  return <div></div>;
+const achievements = () => {
+  return (
+    <div>
+      
+    </div>
+  )
 }
+
+export default achievements

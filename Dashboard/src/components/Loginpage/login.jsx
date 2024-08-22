@@ -1,63 +1,56 @@
-import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
-import { useAuth } from "./authProvider";
-import Navbar from "./../Navbar";
+import React from "react";
+import Navbar from "../Navbar";
+import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const authContext = useAuth();
-  console.log("useAuth output:", authContext);
+  const [uname, setuname] = useState(null);
+  const handleuname = (event) => {
+    setuname(event.target.value);
+  };
 
-  const { login } = authContext;
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const success = await login(email, password);
-    if (success) {
-      navigate("/dashboard"); // Redirect to the dashboard
-    }
+  const [password, setpassword] = useState(null);
+  const handlepwd = (event) => {
+    setpassword(event.target.value);
   };
 
   return (
     <>
       <Navbar />
-      <form className="loginform " onSubmit={handleSubmit}>
-        <div className="regbackbtn">
-          <Link to="/">
-            <button className="signupbtn">Go Back</button>
-          </Link>
-        </div>
-
-        <div className="signup1" style={{ justifyContent: "center" }}>
-          <div className="signup11">
-            <label>Email:</label>
-            <input
-              className="text-black"
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+      <div className="Loginsignup">
+        <form className="loginform ">
+          <div className="regbackbtn">
+            <Link to="/">
+              <button className="signupbtn">Go Back</button>
+            </Link>
           </div>
-          <div className="signup11">
-            <label>Password:</label>
-            <input
-              className="text-black"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-        </div>
 
-        <div className="signupbtnfront">
-          <button type="submit" className="signupbtn">
-            Login
-          </button>
-        </div>
-      </form>
+          <div className="signup1" style={{ justifyContent: "center" }}>
+            <div className="signup11">
+              <label>Username:</label>
+              <input
+                type="text"
+                placeholder="Username"
+                value={uname}
+                onChange={handleuname}
+              />
+            </div>
+            <div className="signup11">
+              <label>Password:</label>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={handlepwd}
+              />
+            </div>
+          </div>
+          <div className="signupbtnfront">
+            <Link to={"/dashboard"}>
+              <button className="signupbtn">Login</button>
+            </Link>
+          </div>
+        </form>
+      </div>
     </>
   );
 };

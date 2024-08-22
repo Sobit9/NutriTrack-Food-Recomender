@@ -16,11 +16,12 @@ import Landingpage from "./components/landingpage";
 import Login from "./components/Loginpage/login";
 import Register from "./components/Registerpage/register";
 import Calculate from "./components/Calculate/calculate";
-import AboutUs from "./components/AboutUs";
+// import AboutUs from "./components/AboutUs";
 import PrivateRoute from "./components/PrivateRoute";
 import ProtectedComponent from "./components/ProtectedComponent";
 import { AuthProvider } from "./components/Loginpage/authProvider";
-import Admins from "./components/Admin";
+import Admin from "./components/admin";
+import About from "./components/About/about";
 function App() {
   const mode = useSelector((state) => state.global.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
@@ -36,8 +37,9 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/calculate" element={<Calculate />} />
-              <Route path="/about" element={<AboutUs />} />
-
+              {/* <Route path="/about" element={<AboutUs />} /> */}
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/about" element={<About/>} />
               <Route element={<Layout />}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/food" element={<Food />} />
@@ -47,7 +49,7 @@ function App() {
                 <Route path="/daily" element={<Daily />} />
                 <Route path="/monthly" element={<Monthly />} />
                 <Route path="/breakdown" element={<Breakdown />} />
-                <Route path="/admins" element={<Admins />} />
+                
               </Route>
             </Routes>
           </AuthProvider>

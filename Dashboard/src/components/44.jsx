@@ -11,6 +11,7 @@ import imgf7 from "../assets/vegmix.png";
 import imgf8 from "../assets/fitgirl.png";
 import imgf9 from "../assets/salad.png";
 import imgf10 from "../assets/fruitjuice.png";
+// import api from './../api';
 
 const Work = () => {
   const divToWatchRef = useRef(null); // Create a ref for the div to watch
@@ -40,8 +41,6 @@ const Work = () => {
 
     if (window.scrollY > 750) {
       setHasScrolled(true);
-    } else {
-      setHasScrolled(false);
     }
     if (divToWatchRef.current) {
       observer.observe(divToWatchRef.current); // Observe the target div
@@ -180,9 +179,7 @@ const Work = () => {
             </div>
           </div>
           <h1 className="b113" ref={textwatch2}>
-            <p className="p101">
-              What you <span className="texthighlight">Eat</span>
-            </p>{" "}
+            <p className="p101">What you Eat</p>{" "}
           </h1>
         </div>
       </div>

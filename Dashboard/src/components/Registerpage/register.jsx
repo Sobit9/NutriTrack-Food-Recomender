@@ -1,407 +1,455 @@
-import React, { useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
-import Header from "./../../modules/Header";
-import Navbar from "./../Navbar";
+import React from "react";
+import Navbar from "../Navbar";
+import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+const Signup = () => {
+  const gcheck1 = useRef(null);
+  const gcheck2 = useRef(null);
+  const regform1 = useRef(null);
+  const regform2 = useRef(null);
+  const hcheck1 = useRef(null);
+  const hcheck2 = useRef(null);
+  const hcheck3 = useRef(null);
+  const icheck1 = useRef(null);
+  const icheck2 = useRef(null);
+  const icheck3 = useRef(null);
+  const icheck4 = useRef(null);
+  const jcheck1 = useRef(null);
+  const jcheck2 = useRef(null);
+  const jcheck3 = useRef(null);
+  const jcheck4 = useRef(null);
+  const jcheck5 = useRef(null);
+  const kcheck1 = useRef(null);
+  const kcheck2 = useRef(null);
 
-const Register = () => {
-  const theme = useTheme();
-  const navigate = useNavigate();
-  // const [file, setFile] = useState()
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    name: "",
-    email: "",
-    age: "",
-    gender: "",
-    height: "",
-    weight: "",
-    phoneNumber: "",
-    activityLevel: "",
-    dietaryPreferences: "none",
-    healthIssues: [],
-    role: "user",
-    avatar: null,
-  });
+  const icheck = [icheck1, icheck2, icheck3, icheck4];
+  const jcheck = [jcheck1, jcheck2, jcheck3, jcheck4, jcheck5];
+  const kcheck = [kcheck1, kcheck2];
+  const [healthissues, sethealthissue] = useState(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const [uname, setuname] = useState(null);
+  const handleuname = (event) => {
+    setuname(event.target.value);
   };
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, avatar: e.target.files[0] });
+  const [email, setemail] = useState(null);
+  const handleemail = (event) => {
+    setemail(event.target.value);
   };
 
-  const handleCheckboxChange = (e) => {
-    const { value, checked } = e.target;
-    setFormData((prevState) => {
-      const healthIssues = prevState.healthIssues || []; // Ensure healthIssues is an array
-      if (checked) {
-        return { ...prevState, healthIssues: [...healthIssues, value] };
+  const [password, setpassword] = useState(null);
+  const handlepwd = (event) => {
+    setpassword(event.target.value);
+  };
+  const [cpassword, setcpassword] = useState(null);
+  const handlecpwd = (event) => {
+    setcpassword(event.target.value);
+  };
+  const [gender, setgender] = useState(null);
+
+  const [height, setheight] = useState(null);
+
+  const handleht = (event) => {
+    setheight(event.target.value);
+  };
+
+  const [weight, setweight] = useState(null);
+  const handlewt = (event) => {
+    setweight(event.target.value);
+  };
+
+  const [age, setage] = useState(null);
+  const handleage = (event) => {
+    setage(event.target.value);
+  };
+
+  const [activitylvl, setactivitylvl] = useState(null);
+  const [ugoal, setugoal] = useState(null);
+  const [upreference, setupref] = useState(null);
+
+  const changegcolor = (a) => {
+    if (a == 0) {
+      gcheck1.current.classList.add("gchecked");
+      gcheck2.current.classList.remove("gchecked");
+      setgender("male");
+    }
+    if (a == 1) {
+      gcheck2.current.classList.add("gchecked");
+      gcheck1.current.classList.remove("gchecked");
+      setgender("female");
+    }
+  };
+
+  const changegcolor2 = (a) => {
+    if (a == 0) {
+      hcheck1.current.classList.add("gchecked");
+      hcheck2.current.classList.remove("gchecked");
+      hcheck3.current.classList.remove("gchecked");
+      setugoal("lose weight");
+    }
+    if (a == 1) {
+      hcheck2.current.classList.add("gchecked");
+      hcheck1.current.classList.remove("gchecked");
+      hcheck3.current.classList.remove("gchecked");
+      setugoal("gain weight");
+    }
+    if (a == 2) {
+      hcheck3.current.classList.add("gchecked");
+      hcheck1.current.classList.remove("gchecked");
+      hcheck2.current.classList.remove("gchecked");
+      setugoal("maintain weight");
+    }
+  };
+
+  const changegcolor3 = (a) => {
+    if (a == 0) {
+      icheck1.current.classList.add("gchecked");
+      icheck4.current.classList.remove("gchecked");
+      sethealthissue("diabities");
+    } else if (a == 1) {
+      icheck2.current.classList.add("gchecked");
+      icheck3.current.classList.remove("gchecked");
+      icheck4.current.classList.remove("gchecked");
+      sethealthissue("lowbp");
+    } else if (a == 2) {
+      icheck3.current.classList.add("gchecked");
+      icheck2.current.classList.remove("gchecked");
+      icheck4.current.classList.remove("gchecked");
+      sethealthissue("highbp");
+    }
+    if (a == 3) {
+      icheck4.current.classList.add("gchecked");
+      icheck1.current.classList.remove("gchecked");
+      icheck2.current.classList.remove("gchecked");
+      icheck3.current.classList.remove("gchecked");
+      sethealthissue("none");
+    }
+    if (
+      icheck1.current.classList.contains("gchecked") &&
+      icheck2.current.classList.contains("gchecked")
+    ) {
+      sethealthissue("diabities lowbp");
+    }
+    if (
+      icheck1.current.classList.contains("gchecked") &&
+      icheck3.current.classList.contains("gchecked")
+    ) {
+      sethealthissue("diabities highbp");
+    }
+  };
+
+  const changegcolor4 = (a) => {
+    jcheck.forEach((ref, index) => {
+      if (index == a) {
+        ref.current.classList.add("gchecked");
       } else {
-        return {
-          ...prevState,
-          healthIssues: healthIssues.filter((issue) => issue !== value),
-        };
+        ref.current.classList.remove("gchecked");
       }
     });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = new FormData();
-    for (const key in formData) {
-      data.append(key, formData[key]);
+    if (a == 0) {
+      setactivitylvl("sedentary");
     }
-    navigate("/dashboard");
-    try {
-      const response = await fetch("http://localhost:3000/register", {
-        method: "POST",
-        body: data,
-      });
+    if (a == 1) {
+      setactivitylvl("lightly active");
+    }
+    if (a == 2) {
+      setactivitylvl("moderately active");
+    }
+    if (a == 3) {
+      setactivitylvl("very active");
+    }
+    if (a == 4) {
+      setactivitylvl("extremely active");
+    }
+  };
 
-      if (response.status === 201) {
-         // Navigate to the login page upon successful registration
+  const changegcolor5 = (a) => {
+    kcheck.forEach((ref, index) => {
+      if (index == a) {
+        ref.current.classList.add("gchecked");
+      } else {
+        ref.current.classList.remove("gchecked");
       }
-    } catch (error) {
-      console.error("Error:", error);
+    });
+    if (a == 0) {
+      setupref("veg");
+    }
+    if (a == 1) {
+      setupref("nonveg");
     }
   };
-  // const [message, setMessage] = useState("");
-  // const navigate = useNavigate();
-  // const handleChange = (e) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await axios.post("http://localhost:3000/register", formData);
-  //     setMessage("Registration successful! Redirecting to the landing page...");
-  //     setTimeout(() => {
-  //       navigate("/"); // Redirect to landing page after successful registration
-  //     }, 1000); // 2-second delay to show the message
-  //   } catch (error) {
-  //     setMessage(
-  //       `Registration failed: ${error.response?.data?.error || "An error occurred."}`
-  //     );
-  //   }
-  // };
+  const data = {
+    uname: uname,
+    email: email,
+    password: password,
+    cpassword: cpassword,
+    gender: gender,
+    height: height,
+    weight: weight,
+    age: age,
+    healthissues: healthissues,
+    activitylvl: activitylvl,
+    ugoal: ugoal,
+    upreference: upreference,
+  };
+
+  const changepage = (a) => {
+    if (a == 0) {
+      regform1.current.classList.add("signblock");
+      regform2.current.classList.remove("signblock");
+    } else if (a == 1) {
+      regform2.current.classList.add("signblock");
+      regform1.current.classList.remove("signblock");
+    } else if (a == 2) {
+      console.log(data);
+    }
+  };
+
   return (
-    // <div className="min-h-screen flex items-center justify-center">
-    <Box m="sticky top-0 z-10 flex items-center justify-evenly">
+    <>
       <Navbar />
-      <div className="justify-between m-5">
-        <Header
-          title="RegistrationForm"
-          subtitle="Please Register your Account."
-        />
-      </div>
-
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-      
-        <div className="grid grid-cols-3 justify-center">
-          <Box className="grid justify-center gap-[20px] text-lg">
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Avatar:</label>
-              <input
-                type="file"
-                name="avatar"
-                onChange={handleFileChange}
-                className="block text-gray-900 font-bold mb-2"
-                placeholder="Upload your image."
-              />
-            </Box>
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Username:</label>
+      <div className="Loginsignup">
+        <div ref={regform1} className="loginform ">
+          <div className="regbackbtn">
+            <Link to="/">
+              <button className="signupbtn">Go Back</button>
+            </Link>
+          </div>
+          <div className="signup1" style={{ paddingTop: "90px" }}>
+            <div className="signup11">
+              <label>Username:</label>
               <input
                 type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                required
-                className="block text-gray-900 font-bold mb-2"
+                placeholder="Username"
+                value={uname}
+                onChange={handleuname}
               />
-            </Box>
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Name:</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="block text-gray-900 font-bold mb-2"
-                required
-              />
-            </Box>
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Email:</label>
+            </div>
+            <div className="signup11">
+              <label>Email:</label>
               <input
                 type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="block text-gray-900 font-bold mb-2"
+                placeholder="Email"
+                value={email}
+                onChange={handleemail}
               />
-            </Box>
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Password:</label>
+            </div>
+            <div className="signup11">
+              <label>Password:</label>
               <input
                 type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className="block text-gray-900 font-bold mb-2"
-                required
+                placeholder="Password"
+                value={password}
+                onChange={handlepwd}
               />
-            </Box>
-          </Box>
-          <Box className="grid justify-center gap-[20px] text-lg">
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Phone Number:</label>
+            </div>
+            <div className="signup11">
+              <label>Confirm Password:</label>
               <input
-                type="tel"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-                required
-                className="block text-gray-900 font-bold mb-2"
+                type="password"
+                placeholder="Confirm Password"
+                value={cpassword}
+                onChange={handlecpwd}
               />
-            </Box>
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Age:</label>
-              <input
-                type="number"
-                name="age"
-                value={formData.age}
-                onChange={handleChange}
-                required
-                className="block text-gray-900 font-bold mb-2"
-              />
-            </Box>
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Weight (kg):</label>
+            </div>
+            <div className="gendercheck">
+              <label>Gender:</label>
+              <div className="genderr">
+                <div
+                  ref={gcheck1}
+                  className="genderchoose"
+                  onClick={() => changegcolor(0)}
+                >
+                  Male
+                </div>
+                <div
+                  ref={gcheck2}
+                  className="genderchoose"
+                  onClick={() => changegcolor(1)}
+                >
+                  Female
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="signup1" style={{ paddingTop: "90px" }}>
+            <div className="signup11">
+              <label>Age:</label>
               <input
                 type="number"
-                name="weight"
-                value={formData.weight}
-                onChange={handleChange}
-                required
-                className="block text-gray-900 font-bold mb-2"
-              />
-            </Box>
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Gender:</label>
-              <select
-                name="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                required
-                className="block text-gray-900 font-bold mb-2"
-              >
-                <option value="">Select</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-            </Box>
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Height (cm):</label>
+                placeholder="18"
+                value={age}
+                onChange={handleage}
+              ></input>
+            </div>
+
+            <div className="signup11">
+              <label>Height(cm):</label>
               <input
                 type="number"
-                name="height"
-                value={formData.height}
-                onChange={handleChange}
-                required
-                className="block text-gray-900 font-bold mb-2"
-              />
-            </Box>
-          </Box>
-          <Box className="grid justify-center gap-[20px] text-lg">
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Activity Level:</label>
-              <select
-                name="activityLevel"
-                value={formData.activityLevel}
-                onChange={handleChange}
-                required
-                className="block text-gray-900 font-bold mb-2"
+                placeholder="170"
+                value={height}
+                onChange={handleht}
+              ></input>
+            </div>
+
+            <div className="signup11">
+              <label>Weight(kg):</label>
+              <input
+                type="number"
+                placeholder="65"
+                value={weight}
+                onChange={handlewt}
+              ></input>
+            </div>
+
+            <div className="reasoncheck">
+              <label>Select Your Goal:</label>
+              <div
+                ref={hcheck1}
+                className="goalcheck"
+                onClick={() => changegcolor2(0)}
               >
-                <option value="">Select</option>
-                <option value="sedentary">Sedentary</option>
-                <option value="lightly active">Lightly Active</option>
-                <option value="moderately active">Moderately Active</option>
-                <option value="very active">Very Active</option>
-                <option value="extremely active">Extremely Active</option>
-              </select>
-            </Box>
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Dietary Preferences:</label>
-              <select
-                name="dietaryPreferences"
-                value={formData.dietaryPreferences}
-                onChange={handleChange}
-                required
-                className="block text-gray-900 font-bold mb-2"
+                Loose Weight
+              </div>
+              <div
+                ref={hcheck2}
+                className="goalcheck"
+                onClick={() => changegcolor2(1)}
               >
-                <option value="none">None</option>
-                <option value="vegetarian">Vegetarian</option>
-                <option value="vegan">Vegan</option>
-                <option value="gluten-free">Gluten-Free</option>
-                <option value="dairy-free">Dairy-Free</option>
-              </select>
-            </Box>
-            <Box
-              gridColumn="span 8"
-              gridRow="span 2"
-              backgroundColor={theme.palette.background.alt}
-              px="1rem"
-              borderRadius="0.55rem"
-            >
-              <label className="text-yellow-500">Health Issues:</label>
-              <Box
-                gridColumn="span 8"
-                gridRow="span 2"
-                backgroundColor={theme.palette.background.alt}
-                px="1rem"
-                borderRadius="0.55rem"
+                Gain Weight
+              </div>
+              <div
+                ref={hcheck3}
+                className="goalcheck"
+                onClick={() => changegcolor2(2)}
               >
-                <label className="text-yellow-500">
-                  <input
-                    type="checkbox"
-                    name="healthIssues"
-                    value="Diabetes"
-                    onChange={handleCheckboxChange}
-                    className="block text-gray-900 font-bold mb-2"
-                  />
-                  Diabetes
-                </label>
-                <label className="text-yellow-500">
-                  <input
-                    type="checkbox"
-                    name="healthIssues"
-                    value="Low BP"
-                    onChange={handleCheckboxChange}
-                    className="block text-gray-900 font-bold mb-2"
-                  />
-                  Low BP
-                </label>
-                <label className="text-yellow-500">
-                  <input
-                    type="checkbox"
-                    name="healthIssues"
-                    value="High BP"
-                    onChange={handleCheckboxChange}
-                    className="block text-gray-900 font-bold mb-2"
-                  />
-                  High BP
-                </label>
-                <label className="text-yellow-500">
-                  <input
-                    type="checkbox"
-                    name="healthIssues"
-                    value="Iron Deficiency"
-                    onChange={handleCheckboxChange}
-                    className="block text-gray-900 font-bold mb-2"
-                  />
-                  Iron Deficiency
-                </label>
-              </Box>
-            </Box>
-          </Box>
+                Maintain Weight
+              </div>
+            </div>
+          </div>
+          <div className="signupbtnfront">
+            <button className="signupbtn" onClick={() => changepage(0)}>
+              Next
+            </button>
+          </div>
         </div>
-        <div className="flex  justify-center text-lg">
-          <button
-            className="text-yellow-500 rounded-full m-6 py-2 px-5 bg-green-200 hover:text-red-600 transition"
-            type="submit" 
-            // className="w-80 bg-yellow-600 text-white p-2 rounded hover:bg-yellow-800 transition"
-          >
-            Register
-          </button>
-          <Link
-            className="text-yellow-500 rounded-full m-6 py-2 px-5 bg-green-200 hover:text-red-600 transition"
-            to="/"
-          >
-            Go Back
-          </Link>
+        <div ref={regform2} className="loginform signblock">
+          <div className="healthissues">
+            <label>Select Health Issues:</label>
+            <div className="hselect">
+              <div
+                ref={icheck1}
+                className="hissues"
+                onClick={() => changegcolor3(0)}
+              >
+                Diabities
+              </div>
+              <div
+                ref={icheck2}
+                className="hissues"
+                onClick={() => changegcolor3(1)}
+              >
+                Low BP
+              </div>
+            </div>
+            <div className="hselect">
+              <div
+                ref={icheck3}
+                className="hissues"
+                onClick={() => changegcolor3(2)}
+              >
+                High BP
+              </div>
+              <div
+                ref={icheck4}
+                className="hissues"
+                onClick={() => changegcolor3(3)}
+              >
+                None
+              </div>
+            </div>
+          </div>
+          <div className="healthissues">
+            <label>Activity Level:</label>
+            <div className="hselect1">
+              <div
+                ref={jcheck1}
+                className="hissues1"
+                key={0}
+                onClick={() => changegcolor4(0)}
+              >
+                Sedentary
+              </div>
+              <div
+                ref={jcheck2}
+                className="hissues1"
+                key={1}
+                onClick={() => changegcolor4(1)}
+              >
+                Lightly Active
+              </div>
+              <div
+                ref={jcheck3}
+                className="hissues1"
+                key={2}
+                onClick={() => changegcolor4(2)}
+              >
+                Moderately Active
+              </div>
+              <div
+                ref={jcheck4}
+                className="hissues1"
+                key={3}
+                onClick={() => changegcolor4(3)}
+              >
+                Very Active
+              </div>
+              <div
+                ref={jcheck5}
+                className="hissues1"
+                key={4}
+                onClick={() => changegcolor4(4)}
+              >
+                Extremely Active
+              </div>
+            </div>
+          </div>
+          <div className="healthissues">
+            <label>Food Preference:</label>
+            <div className="hselect1">
+              <div
+                ref={kcheck1}
+                className="hissues1"
+                key={0}
+                onClick={() => changegcolor5(0)}
+              >
+                VEG
+              </div>
+              <div
+                ref={kcheck2}
+                className="hissues1"
+                key={1}
+                onClick={() => changegcolor5(1)}
+              >
+                NON VEG
+              </div>
+            </div>
+          </div>
+
+          <div className="signupbtnback">
+            <button className="signupbtn" onClick={() => changepage(1)}>
+              Prev
+            </button>
+            <button className="signupbtn" onClick={() => changepage(2)}>
+              Submit
+            </button>
+          </div>
         </div>
-      </form>
-    </Box>
+      </div>
+    </>
   );
 };
 
-export default Register;
+export default Signup;
