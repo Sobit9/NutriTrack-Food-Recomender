@@ -12,7 +12,7 @@ const SearchBar = ({ onLogFood }) => {
     setQuery(e.target.value);
     if (e.target.value.length > 2) {
       try {
-        const response = await axios.get(`http://localhost:5000/food/search/${e.target.value}`);
+        const response = await axios.get(`http://localhost:3000/food/search/${e.target.value}`);
         setResults(response.data.common); // Adjust based on your response structure
       } catch (error) {
         console.error('Error fetching search results:', error);
@@ -24,7 +24,7 @@ const SearchBar = ({ onLogFood }) => {
 
   const handleSelectFood = async (food) => {
     try {
-      const response = await axios.get(`http://localhost:5000/food/item/${food.food_name}`);
+      const response = await axios.get(`http://localhost:3000/food/item/${food.food_name}`);
       const detailedFood = {
         ...response.data,
         foodName: food.food_name,

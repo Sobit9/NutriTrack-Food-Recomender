@@ -6,7 +6,7 @@ import Header from "./../modules/Header";
 export default function breakdown() {
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="BREAKDOWN" subtitle="Breakdown of Sales By Category" />
+      <Header title="BREAKDOWN" subtitle="Breakdown of Nutrition" />
       <Box mt="40px" height="75vh">
         <BreakdownChart />
       </Box>

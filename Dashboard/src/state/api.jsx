@@ -18,17 +18,13 @@ export const api = createApi({
       query: (id) => `general/user/${id}`,
       providesTags: ["User"],
     }),
-    getFoods: build.query({
-      query: () => "client/foods",
-      providesTags: ["Foods"],
-    }),
     getClients: build.query({
       query: () => "client/clients",
       providesTags: ["Clients"],
     }),
     getFoodLogs: build.query({
       query: (page, pageSize, sort, search) => ({
-        url: "client/foodLog",
+        url: "general/dashboard",
         method: "GET",
         params: { page, pageSize, sort, search },
       }),

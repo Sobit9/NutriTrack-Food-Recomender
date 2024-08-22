@@ -11,6 +11,7 @@ const OverviewChart = ({ isDashboard = false, view }) => {
     if (!data) return [];
 
     const { monthlyData } = data;
+    console.log("monthly data", monthlyData);
     const totalCaloriesLine = {
       id: "totalCalories",
       color: theme.palette.secondary.main,
@@ -21,9 +22,19 @@ const OverviewChart = ({ isDashboard = false, view }) => {
       color: theme.palette.secondary[600],
       data: [],
     };
+    // const totalFatsLine = {
+    //   id: "totalFats",
+    //   color: theme.palette.secondary[600],
+    //   data: [],
+    // };
+    // const totalProteinsLine = {
+    //   id: "totalProteins",
+    //   color: theme.palette.secondary[600],
+    //   data: [],
+    // };
 
     Object.values(monthlyData).reduce(
-      (acc, { month, totalCalories, totalCarbs }) => {
+      (acc, { month, totalCalories, totalCarbs}) => {
         const curCalories = acc.calories + totalCalories;
         const curCarbs = acc.carbs + totalCarbs;
 
@@ -82,7 +93,7 @@ const OverviewChart = ({ isDashboard = false, view }) => {
           },
         },
       }}
-      margin={{ top: 20, right: 50, bottom: 50, left: 70 }}
+      margin={{ top: 20, right: 50, bottom: 50, left: 80 }}
       xScale={{ type: "point" }}
       yScale={{
         type: "linear",
@@ -92,7 +103,7 @@ const OverviewChart = ({ isDashboard = false, view }) => {
         reverse: false,
       }}
       yFormat=" >-.2f"
-      curve="catmullRom"
+      curve="basis"
       enableArea={isDashboard}
       axisTop={null}
       axisRight={null}

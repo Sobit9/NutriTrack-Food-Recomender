@@ -11,6 +11,7 @@ import managementRoutes from "./routes/management.js";
 import NutritionRoutes from "./routes/nutrition.js";
 import AuthRoutes from "./routes/auth-routes.js";
 import FoodRoutes from "./routes/food.js";
+import FoodLogRoutes from "./routes/foodLog.js";
 // data imports
 // import User from "./models/User.js";
 // import Food from "./models/foodData.js";
@@ -45,7 +46,8 @@ app.use("/client", clientRoutes);
 app.use("/general", generalRoutes);
 app.use("/management", managementRoutes);
 app.use("/nutrition", NutritionRoutes);
-app.use("/foods", FoodRoutes);
+app.use("/food", FoodRoutes);
+app.use("/foodLog", FoodLogRoutes);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 5001;

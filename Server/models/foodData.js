@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const FoodSchema = new mongoose.Schema(
   {
-    foodName: { type: String, required: true },
+    food_name: { type: String, required: true },
   foodBrand: { type: String, default: null },
   servingQty: { type: Number, required: true },
   servingUnit: { type: String, required: true },

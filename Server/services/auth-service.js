@@ -40,7 +40,7 @@ export const verifyUser = async ({token, email}) => {
         throw new ApiError(StatusCode.BAD_REQUEST,"Invalid token")
     }
     
-    const updatedUser = await User.findByIdAndUpdate(user._id, {
+    const updatedUser = await User.findByIdAndUpdate(user.userId, {
         verifiedAt: new Date(),
     })
     await sendWelcomeEmail({
@@ -58,7 +58,7 @@ export const generateJWT = (user) => {
     })
 }
 
- const verifyJWT = (token) => {
+export const verifyJWT = (token) => {
     return jwt.verify(token, process.env.JWT_SECRET)
 }
 

@@ -16,7 +16,7 @@ router.post('/log', authenticate, async (req, res) => {
     }
   
     try {
-      const foodLog = new FoodLog({
+      const foodLog = new IntakeStat({
         userId: req.user.userId,
         foodName,
         servingQty,

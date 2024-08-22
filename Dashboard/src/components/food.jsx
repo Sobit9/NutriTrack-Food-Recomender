@@ -14,76 +14,74 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import Header from "../modules/Header.jsx";
-import { useGetFoodsQuery } from "../state/api.jsx";
 
-const Food = ({
-  weight,
-  name,
-  calories,
-  protein,
-  carbs,
-  fats,
-  vitamins,
-  minerals,
-  category,
-}) => {
-  const theme = useTheme();
-  const [isExpanded, setIsExpanded] = useState(false);
+// const Food = ({
+//   weight,
+//   name,
+//   calories,
+//   protein,
+//   carbs,
+//   fats,
+//   vitamins,
+//   minerals,
+//   category,
+// }) => {
+//   const theme = useTheme();
+//   const [isExpanded, setIsExpanded] = useState(false);
 
-  return (
-    <Card
-      sx={{
-        backgroundImage: "none",
-        backgroundColor: theme.palette.background.alt,
-        borderRadius: "0.55rem",
-      }}
-    >
-      <CardContent>
-        <Typography
-          sx={{ fontSize: 14 }}
-          color={theme.palette.secondary[700]}
-          gutterBottom
-        >
-          {category}
-        </Typography>
-        <Typography variant="h5" component="div">
-          {name}
-        </Typography>
-        <Typography sx={{ mb: "1.5rem" }} color={theme.palette.secondary[400]}>
-          Calorie Content {Number(calories).toFixed(2)}gm
-        </Typography>
-        <Typography>weight: {weight} gm</Typography>
-      </CardContent>
-      <CardActions>
-        <Button
-          variant="primary"
-          size="small"
-          onClick={() => setIsExpanded(!isExpanded)}
-        >
-          See More
-        </Button>
-      </CardActions>
-      <Collapse
-        in={isExpanded}
-        timeout="auto"
-        unmountOnExit
-        sx={{
-          color: theme.palette.neutral[300],
-        }}
-      >
-        <CardContent>
-          <Typography>Protein: {protein} gm</Typography>
-          <Typography>carbs: {carbs} gm</Typography>
-          <Typography>Fats: {fats} gm</Typography>
-          <Typography>Vitamins: {vitamins}</Typography>
-          <Typography>Minerals: {minerals}</Typography>
-        </CardContent>
-      </Collapse>
-    </Card>
-  );
-};
+//   return (
+//     <Card
+//       sx={{
+//         backgroundImage: "none",
+//         backgroundColor: theme.palette.background.alt,
+//         borderRadius: "0.55rem",
+//       }}
+//     >
+//       <CardContent>
+//         <Typography
+//           sx={{ fontSize: 14 }}
+//           color={theme.palette.secondary[700]}
+//           gutterBottom
+//         >
+//           {category}
+//         </Typography>
+//         <Typography variant="h5" component="div">
+//           {name}
+//         </Typography>
+//         <Typography sx={{ mb: "1.5rem" }} color={theme.palette.secondary[400]}>
+//           Calorie Content {Number(calories).toFixed(2)}gm
+//         </Typography>
+//         <Typography>weight: {weight} gm</Typography>
+//       </CardContent>
+//       <CardActions>
+//         <Button
+//           variant="primary"
+//           size="small"
+//           onClick={() => setIsExpanded(!isExpanded)}
+//         >
+//           See More
+//         </Button>
+//       </CardActions>
+//       <Collapse
+//         in={isExpanded}
+//         timeout="auto"
+//         unmountOnExit
+//         sx={{
+//           color: theme.palette.neutral[300],
+//         }}
+//       >
+//         <CardContent>
+//           <Typography>Protein: {protein} gm</Typography>
+//           <Typography>carbs: {carbs} gm</Typography>
+//           <Typography>Fats: {fats} gm</Typography>
+//           <Typography>Vitamins: {vitamins}</Typography>
+//           <Typography>Minerals: {minerals}</Typography>
+//         </CardContent>
+//       </Collapse>
+//     </Card>
+//   );
+// };
 export default function food() {
-  const { data, isLoading } = useGetFoodsQuery();
   const isNonMobile = useMediaQuery("(min-width: 1000px)");
   const [loggedFoods, setLoggedFoods] = useState([]);
   const [error, setError] = useState(null);
@@ -98,7 +96,6 @@ export default function food() {
         setLoggedFoods(response.data);
       } catch (error) {
         console.error('Error fetching logged foods:', error);
-        setError('Failed to fetch logged foods.');
       }
     };
 
@@ -151,9 +148,10 @@ export default function food() {
     setSelectedFood(null); // Clear selected food when closing the dialog
   };
   return (
+    <div className='text-black'>
     <Box m="1.5rem 2.5rem">
-      <Header title="FOOD" subtitle="Search for food here." />
-      {data || !isLoading ? (
+      <Header subtitle="Search for food here." />
+      <SearchBar  onLogFood={openDialog} />
         <Box
           mt="20px"
           display="grid"
@@ -165,39 +163,48 @@ export default function food() {
             "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
           }}
         >
-          {data &&
-            data.map(
-              ({
-                _id,
-                weight,
-                name,
-                calories,
-                protein,
-                carbs,
-                fats,
-                vitamins,
-                minerals,
-                category,
-              }) => (
-                <Food
-                  key={_id}
-                  _id={_id}
-                  name={name}
-                  weight={weight}
-                  calories={calories}
-                  protein={protein}
-                  carbs={carbs}
-                  fats={fats}
-                  vitamins={vitamins}
-                  minerals={minerals}
-                  category={category}
-                />
-              )
-            )}
-        </Box>
-      ) : (
-        <>Loading...</>
+{error && <p style={{ color: 'red' }}>{error}</p>}
+      {loggedFoods.length > 0 && (
+        <table>
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Food Name</th>
+              <th>Serving Quantity</th>
+              <th>Serving Unit</th>
+              <th>Serving Weight (grams)</th>
+              <th>Actions</th> {/* New column for actions */}
+            </tr>
+          </thead>
+          <tbody>
+            {loggedFoods.map((food) => (
+              <tr key={food._id}>
+                <td>
+                  <img src={food.photo} alt={food.foodName} width="50" height="50" />
+                </td>
+                <td>{food.foodName}</td>
+                <td>{food.servingQty}</td>
+                <td>{food.servingUnit}</td>
+                <td>{food.servingWeightGrams}</td>
+                <td>
+                  <button onClick={() => handleEditClick(food)}>Edit</button>
+                  <button onClick={() => handleDeleteClick(food._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
+      {isDialogOpen && selectedFood && (
+        <FoodDialog
+          food={selectedFood}
+          onClose={closeDialog}
+          onLogFood={handleLogFood}
+          mode={dialogMode} // Pass mode to FoodDialog
+        />
+      )}
+        </Box> 
     </Box>
+    </div>
   );
 }

@@ -11,7 +11,7 @@ import Achievements from "./components/achievements";
 import Overview from "./components/Overview";
 import Daily from "./components/daily";
 import Monthly from "./components/monthly";
-import BreakdownChart from "./modules/BreakdownChart";
+import Breakdown from "./components/breakdown";
 import Landingpage from "./components/landingpage";
 import Login from "./components/Loginpage/login";
 import Register from "./components/Registerpage/register";
@@ -46,7 +46,7 @@ function App() {
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/daily" element={<Daily />} />
                 <Route path="/monthly" element={<Monthly />} />
-                <Route path="/breakdown" element={<BreakdownChart />} />
+                <Route path="/breakdown" element={<Breakdown />} />
                 <Route path="/admins" element={<Admins />} />
               </Route>
             </Routes>

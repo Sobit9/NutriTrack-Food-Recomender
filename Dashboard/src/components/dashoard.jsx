@@ -3,7 +3,7 @@ import Header from "../modules/Header";
 import FlexBetween from "../modules/flexBetween";
 import {
   DownloadOutlined,
-  Email,
+  Schedule,
   PointOfSale,
   PersonAdd,
   Traffic,
@@ -25,6 +25,7 @@ export default function dashoard() {
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
   const { data, isLoading } = useGetDashboardQuery();
+  console.log(data);
   const columns = [
     {
       field: "_id",
@@ -37,7 +38,7 @@ export default function dashoard() {
       flex: 0.5,
     },
     {
-      field: "food",
+      field: "name",
       headerName: "# of Food",
       flex: 1,
     },
@@ -47,6 +48,16 @@ export default function dashoard() {
       flex: 1,
     },
   ];
+  // const { monthlyData } = data;
+  // Object.values(monthlyData).reduce(
+  //   (acc, { totalCalories}) => {
+  //     const curCalories = acc.calories + totalCalories;
+
+  //     return { calories: curCalories};
+  //   },
+  //   { calories: 0}
+  // );
+  // if (!data || isLoading) return "Loading...";
   return (
     <Box m="1.5rem 2.5rem">
       <FlexBetween>
@@ -80,19 +91,19 @@ export default function dashoard() {
       >
         {/* ROW 1 */}
         <StatBox
-          title="FoodLog"
-          value={data && data.totalCalories}
+          title="Todays Cal Report"
+          value={data && data.todayStats.totalCalories}
           con="+14%"
           description="Since last month"
           icon={
-            <Email
+            <Schedule
               sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
             />
           }
         />
         <StatBox
-          title="DailyData"
-          value={data && data.thisMonthStats.todayCalories}
+          title="Yesterday's Cal"
+          value={data && data.dailyData[0].totalCalories}
           increase="+21%"
           description="Since last month"
           icon={
@@ -108,7 +119,7 @@ export default function dashoard() {
           p="1rem"
           borderRadius="0.55rem"
         >
-          <OverviewChart view="sales" isDashboard={true} />
+          <OverviewChart view="calories" isDashboard={true} />
         </Box>
         <StatBox
           title="MonthlyData"
@@ -123,7 +134,7 @@ export default function dashoard() {
         />
         <StatBox
           title="YearlyData"
-          value={data && data.yearlyTotalCalories}
+          value={data && data.thisMonthStats.totalYearly}
           increase="+43%"
           description="Since last year"
           icon={
@@ -177,9 +188,9 @@ export default function dashoard() {
           p="1.5rem"
           borderRadius="0.55rem"
         >
-          <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
+          {/* <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
             Meal By Category
-          </Typography>
+          </Typography> */}
           <BreakdownChart isDashboard={true} />
           <Typography
             p="0 0.6rem"

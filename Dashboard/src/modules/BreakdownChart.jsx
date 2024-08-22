@@ -12,7 +12,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
     search: "",
   });
   const theme = useTheme();
-
+console.log(data)
   if (!data || isLoading) return "Loading...";
 
   const colors = [
@@ -21,14 +21,22 @@ const BreakdownChart = ({ isDashboard = false }) => {
     theme.palette.secondary[300],
     theme.palette.secondary[500],
   ];
-  const formattedData = Object.entries(data.foodLogByCategory).map(
-    ([category, totalCalories], i) => ({
-      id: category,
-      label: category,
-      value: totalCalories,
-      color: colors[i],
-    })
-  );
+  // const formattedData = Object.entries(data.monthlyData).map(
+  //   ([month, totalCalories], i) => ({
+  //     id: month,
+  //     label: month,
+  //     value: totalCalories,
+  //     color: colors[i],
+  //   })
+  // );
+  const formattedData = Array.isArray(data.monthlyData)
+  ? data.monthlyData.map((entry, i) => ({
+      id: entry.month,
+      label: entry.month,
+      value: entry.totalCalories,
+      color: colors[i % colors.length],
+    }))
+  : []
 
   return (
     <Box
@@ -135,8 +143,9 @@ const BreakdownChart = ({ isDashboard = false }) => {
             : "translate(-50%, -100%)",
         }}
       >
-        <Typography variant="h6">
-          {!isDashboard && "Total:"} ${data.yearlyFoodLog}
+        <Typography variant="h10">
+          TotalCalories
+         
         </Typography>
       </Box>
     </Box>

@@ -7,6 +7,7 @@ import Navbar from "./../Navbar";
 
 const Register = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   // const [file, setFile] = useState()
   const [formData, setFormData] = useState({
     username: "",
@@ -50,12 +51,11 @@ const Register = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const data = new FormData();
     for (const key in formData) {
       data.append(key, formData[key]);
     }
-
+    navigate("/dashboard");
     try {
       const response = await fetch("http://localhost:3000/register", {
         method: "POST",
@@ -63,7 +63,7 @@ const Register = () => {
       });
 
       if (response.status === 201) {
-        navigate("/login"); // Navigate to the login page upon successful registration
+         // Navigate to the login page upon successful registration
       }
     } catch (error) {
       console.error("Error:", error);
@@ -101,6 +101,7 @@ const Register = () => {
       </div>
 
       <form onSubmit={handleSubmit} encType="multipart/form-data">
+      
         <div className="grid grid-cols-3 justify-center">
           <Box className="grid justify-center gap-[20px] text-lg">
             <Box
@@ -386,7 +387,7 @@ const Register = () => {
         <div className="flex  justify-center text-lg">
           <button
             className="text-yellow-500 rounded-full m-6 py-2 px-5 bg-green-200 hover:text-red-600 transition"
-            type="submit"
+            type="submit" 
             // className="w-80 bg-yellow-600 text-white p-2 rounded hover:bg-yellow-800 transition"
           >
             Register
