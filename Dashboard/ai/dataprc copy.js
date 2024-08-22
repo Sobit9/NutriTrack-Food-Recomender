@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import Classify from "./datafilter.js";
-import UFood from "../src/Components/Database/userfood.cjs";
-import DFood from "../src/Components/Database/food.cjs";
-import RFood from "../src/Components/Database/recomendedfood.cjs";
+import UFood from "../src/components/Database/userfood.cjs";
+import DFood from "../src/components/Database/food.cjs";
+import RFood from "../src/components/Database/recomendedfood.cjs";
 import express from "express";
 import cors from "cors";
 

@@ -5,7 +5,6 @@ import closeconnection from "../../../ai/dataprc copy.js";
 import emailadderr from "../Database/emailadder.js";
 import emailsend from "../admin/emailsender.js";
 import searchfood from "../admin/searchfood.js";
-import mongoose from "mongoose";
 
 const app = express();
 app.use(express.json());
@@ -16,7 +15,7 @@ app.get("/fetchmeal", async (req, res) => {
     const bmr = req.query.bmr || 2330;
     const uid = req.query.uid || "kosul";
     const ftype = req.query.ftype || "nonveg";
-    const diab = req.query.diab || 1;
+    const diab = req.query.diab || 0;
     const lbp = req.query.lbp || 0;
     const hbp = req.query.hbp || 0;
     await closeconnection(bmr, uid, ftype, diab, lbp, hbp);
@@ -72,6 +71,6 @@ app.post("/foodsearch", async (req, res) => {
   }
 });
 
-app.listen(4000, () => {
+app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
