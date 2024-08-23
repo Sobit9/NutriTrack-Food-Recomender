@@ -17,9 +17,9 @@ import Login from "./components/Loginpage/login";
 import Register from "./components/Registerpage/register";
 import Calculate from "./components/Calculate/calculate";
 // import AboutUs from "./components/AboutUs";
-import PrivateRoute from "./components/PrivateRoute";
-import ProtectedComponent from "./components/ProtectedComponent";
-import { AuthProvider } from "./components/Loginpage/authProvider";
+// import PrivateRoute from "./components/PrivateRoute";
+// import ProtectedComponent from "./components/ProtectedComponent";
+
 import Admin from "./components/admin";
 import About from "./components/About/about";
 function App() {
@@ -31,7 +31,7 @@ function App() {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <AuthProvider>
+
             <Routes>
               <Route path="/" element={<Landingpage />} />
               <Route path="/login" element={<Login />} />
@@ -52,7 +52,6 @@ function App() {
                 
               </Route>
             </Routes>
-          </AuthProvider>
         </ThemeProvider>
       </BrowserRouter>
     </div>

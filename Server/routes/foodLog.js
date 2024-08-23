@@ -4,7 +4,7 @@ import IntakeStat from "../models/MealLog.js"
 
 const router = express.Router();
 
-router.post('/log', authenticate, async (req, res) => {
+router.post('/log',authenticate, async (req, res) => {
     const { foodName, servingQty, servingUnit, servingWeightGrams, calories, protein, fat, carbs, cholesterol, sodium, sugars, potassium, photo } = req.body;
   
     // Log the received payload
@@ -17,7 +17,7 @@ router.post('/log', authenticate, async (req, res) => {
   
     try {
       const foodLog = new IntakeStat({
-        userId: req.user.userId,
+        // userId: req.user.userId,
         foodName,
         servingQty,
         servingUnit,
@@ -85,7 +85,7 @@ router.post('/log', authenticate, async (req, res) => {
   
   
   // Delete a food log entry
-  router.delete('/log/:id', authenticate, async (req, res) => {
+  router.delete('/log/:id',authenticate, async (req, res) => {
     const { id } = req.params;
   
     try {

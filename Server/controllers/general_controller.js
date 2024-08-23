@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import OverallStat from "../models/OverallStat.js";
-import FoodLog from "../models/MealLog.js";
+import IntakeStat from "../models/MealLog.js";
+// import IntakeStat from './../models/MealLog';
 
 export const getUser = async (req, res) => {
   try {
@@ -18,9 +19,9 @@ export const getDashboardStats = async (req, res) => {
     const currentMonth = "May";
     const currentYear = 2023;
     const currentDay = "2023-05-15";
-
+const userId = User._id;
     /* Recent Log of Foods */
-    const foodLog = await FoodLog.find()
+    const foodLog = await IntakeStat.findById(userId)
       .limit(50)
       .sort({ createdOn: -1 });
 

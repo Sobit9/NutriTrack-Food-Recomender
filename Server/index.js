@@ -17,6 +17,8 @@ import closeconnection from "../Dashboard/ai/dataprc copy.js";
 import emailadderr from "..//Dashboard/src/components/Database/emailadder.js";
 import emailsend from "..//Dashboard/src/components/admin/emailsender.js";
 import searchfood from "..//Dashboard/src/components/admin/searchfood.js";
+// import searchuserindatabase from "..//Dashboard/src/components/admin/searchuserindatabase.js";
+// import adduser22 from "..//Dashboard/src/components/admin/adduser.js";
 // data imports
 // import User from "./models/User.js";
 // import Food from "./models/foodData.js";
@@ -115,6 +117,30 @@ app.post("/foodsearch", async (req, res) => {
     await mongoose.connection.close();
   }
 });
+
+app.post("/register2", async (req, res) => {
+  try {
+    const data = req.body;
+    console.log(user);
+    await adduser22(data)
+    res.status(200).json({  user });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+// app.post("/gotodashboard", async (req, res) => {
+//   try {
+//     const { email } = req.body;
+//     const {password } = req.body;
+//     const user = await searchuserindatabase(email, password);
+//     console.log(user);
+//     res.status(200).json({  user });
+//   } catch (error) {
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 5001;

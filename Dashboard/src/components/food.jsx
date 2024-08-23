@@ -5,15 +5,27 @@ import axios from '../api.jsx';
 import {
   Box,
   Card,
-  CardActions,
-  CardContent,
-  Collapse,
-  Button,
-  Typography,
-  useTheme,
-  useMediaQuery,
+  // CardActions,
+  // CardContent,
+  // Collapse,
+  // Button,
+  // Typography,
+  // useTheme,
+  // useMediaQuery,
 } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 import Header from "../modules/Header.jsx";
+const token = localStorage.getItem('token');
+
+// Create an axios instance with default headers including the token
+const api = axios.create({
+  baseURL: 'http://localhost:3000', // Replace with your API base URL
+  headers: {
+    'Authorization': `Bearer ${token}`,
+  },
+});
+
+// Example POST request with authentication
 
 // const Food = ({
 //   weight,
@@ -82,22 +94,46 @@ import Header from "../modules/Header.jsx";
 //   );
 // };
 export default function food() {
-  const isNonMobile = useMediaQuery("(min-width: 1000px)");
+  // const isNonMobile = useMediaQuery("(min-width: 1000px)");
   const [loggedFoods, setLoggedFoods] = useState([]);
   const [error, setError] = useState(null);
   const [selectedFood, setSelectedFood] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogMode, setDialogMode] = useState('add'); // add or edit
-
+  const navigate = useNavigate();
+  const logFood = async (food) => {
+    try {
+      const response = await axios.post('/foodLog/log', food);
+      console.log('Food logged successfully:', response.data);
+    } catch (error) {
+      console.error('Error logging food:', error);
+    }
+  };
   useEffect(() => {
     const fetchLoggedFoods = async () => {
+      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+      console.log(token);
+      if (!token) {
+        setError('Token is missing, please log in again.'); // Redirect to login if no token is found
+        return;
+      }
+    
       try {
-        const response = await axios.get('/foodLog/logs');
+        const response = await axios.get('/foodLog/logs', {
+          headers: {
+            'Authorization': `Bearer ${token}`, // Add the Authorization header
+          },
+        });
         setLoggedFoods(response.data);
       } catch (error) {
         console.error('Error fetching logged foods:', error);
+        setError('Failed to fetch logged foods.');
+        // if (error.response && error.response.status === 401) {
+        //   navigate('/login'); // Redirect to login if unauthorized
+        // }
       }
     };
+    
 
     fetchLoggedFoods();
   }, []);
@@ -139,6 +175,7 @@ export default function food() {
 
   const openDialog = (food) => {
     setSelectedFood(food);
+    logFood(food);
     setDialogMode('add');
     setIsDialogOpen(true);
   };
@@ -152,17 +189,7 @@ export default function food() {
     <Box m="1.5rem 2.5rem">
       <Header subtitle="Search for food here." />
       <SearchBar  onLogFood={openDialog} />
-        <Box
-          mt="20px"
-          display="grid"
-          gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-          justifyContent="space-between"
-          rowGap="20px"
-          columnGap="1.33%"
-          sx={{
-            "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-          }}
-        >
+        <Card>
 {error && <p style={{ color: 'red' }}>{error}</p>}
       {loggedFoods.length > 0 && (
         <table>
@@ -194,7 +221,7 @@ export default function food() {
             ))}
           </tbody>
         </table>
-      )}
+      )}</Card>
       {isDialogOpen && selectedFood && (
         <FoodDialog
           food={selectedFood}
@@ -204,7 +231,6 @@ export default function food() {
         />
       )}
         </Box> 
-    </Box>
     </div>
   );
 }

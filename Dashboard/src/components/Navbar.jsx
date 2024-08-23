@@ -71,7 +71,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="btnsmanager">
-          <Link to={"/signup"}>
+          <Link to={"/register"}>
             {" "}
             <button className="primary-button">Register</button>
           </Link>

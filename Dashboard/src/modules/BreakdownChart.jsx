@@ -1,11 +1,11 @@
 import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 import { Box, Typography, useTheme } from "@mui/material";
-import { useGetFoodLogsQuery } from "../state/api";
+import { useGetDashboardQuery } from "../state/api";
 import foodLog from "./../components/foodLog";
 
 const BreakdownChart = ({ isDashboard = false }) => {
-  const { data, isLoading } = useGetFoodLogsQuery({
+  const { data, isLoading } = useGetDashboardQuery({
     page: 1,
     pageSize: 10,
     sort: "date",
@@ -87,7 +87,7 @@ console.log(data)
             ? { top: 40, right: 80, bottom: 100, left: 50 }
             : { top: 40, right: 80, bottom: 80, left: 80 }
         }
-        sortByValue={true}
+        sortByValue={false}
         innerRadius={0.45}
         activeOuterRadiusOffset={8}
         borderWidth={1}

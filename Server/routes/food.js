@@ -62,6 +62,7 @@ router.get('/item/:foodName', async (req, res) => {
     };
 
     res.json(foodInfo);
+    console.log(foodInfo);
   } catch (error) {
     res.status(500).send(error.toString());
   }

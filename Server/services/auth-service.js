@@ -51,12 +51,12 @@ export const verifyUser = async ({token, email}) => {
     return updatedUser
 }
 
-export const generateJWT = (user) => {
-    const userData = getUser(user)
-    return jwt.sign(userData, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRE_IN,
-    })
-}
+// export const generateJWT = (user) => {
+//     const userData = getUser(user)
+//     return jwt.sign(userData, process.env.JWT_SECRET, {
+//         expiresIn: process.env.JWT_EXPIRE_IN,
+//     })
+// }
 
 export const verifyJWT = (token) => {
     return jwt.verify(token, process.env.JWT_SECRET)
@@ -71,12 +71,18 @@ export const login = async (userData) => {
         userData.password,
         user.password,
     )
+    console.log(userData.password)
+    console.log(user.password)
     if (!isPasswordValid) {
         throw new Error("Invalid password")
     }
-    const userObject = user.toObject()
-    return generateJWT(userObject)
+    
+    const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // localStorage.setItem('authToken', response.data.token);
+    // res.json({ token });
+    return (token)
 
 }
+
 
  export default verifyJWT

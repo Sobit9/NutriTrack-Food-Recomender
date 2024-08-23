@@ -1,7 +1,7 @@
 import ApiError from "../Utils/ApiError.js";
 import StatusCode from "../Utils/StatusCode.js";
 import User from "../models/User.js";
-import argon2 from "argon2"
+// import argon2 from "argon2"
 import sendMail from "./mail-service.js"
 import path from "path"
 import fs from "fs"
@@ -9,9 +9,12 @@ import hbs from "handlebars"
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { calculateBMR, calculateLimits } from '../controllers/calculator.js';
-export const hashPassword = async (password) => {
-    return argon2.hash(password)
-}
+import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
+// import User from "../models/User.js"
+// export const hashPassword = async (password) => {
+//     return argon2.hash(password)
+// }
 const calculateBMI = (height, weight) => {
     if (height && weight) {
       const heightInMeters = height / 100; // convert cm to meters
@@ -100,7 +103,7 @@ export const createUser = async (userData) => {
     console.log('userData received:', userData); // Debugging log
   
     try {
-      const hashedPassword = await hashPassword(password);
+      const hashedPassword  = await bcrypt.hash(password, 10);
   
       // Calculate BMI
       const bmi = calculateBMI(height, weight);
@@ -113,7 +116,7 @@ export const createUser = async (userData) => {
       const user = new User({
         username,
         email,
-        password: hashedPassword,
+        password,
         age,
         name, // Ensure the name field is included
         gender,
@@ -208,6 +211,8 @@ export const generateToken = () => {
 }
 
 export const verifyUserPassword = async (password, hashedPassword) => {
-    return argon2.verify(hashedPassword, password)
+  // const email = User.email;
+  // const user = await User.findOne(email);
+    return bcrypt.compare(password, hashedPassword)
 }
-
+// 

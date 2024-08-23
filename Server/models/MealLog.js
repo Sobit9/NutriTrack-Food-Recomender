@@ -2,17 +2,17 @@ import mongoose from "mongoose";
 
 const IntakeStatSchema = new mongoose.Schema(
   {
-    userId:{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-  },
-  mealId:{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Food",
-    required: true,
-    addedAt: { type: Date, default: Date.now },
-},
+  //   userId:{
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "User",
+  //     required: true,
+  // },
+//   mealId:{
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: "Food",
+//     required: true,
+//     addedAt: { type: Date, default: Date.now },
+// },
 foodName: { type: String, required: true },
 servingQty: { type: Number, required: true },
 servingUnit: { type: String, required: true },

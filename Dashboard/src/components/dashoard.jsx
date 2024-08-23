@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../modules/Header";
 import FlexBetween from "../modules/flexBetween";
 import {
@@ -20,32 +20,61 @@ import BreakdownChart from "../modules/BreakdownChart";
 import { useGetDashboardQuery } from "../state/api";
 import StatBox from "../modules/StatBox";
 import OverviewChart from "../modules/OverviewChart";
+import { useUser } from "./Loginpage/authProvider";
 
 export default function dashoard() {
+  const [loggedFoods, setLoggedFoods] = useState([]);
+  // const navigate = useNavigate();
+
+  // const handleViewDetails = (food) => {
+  //   navigate('/foodDetails', { state: { food } });
+  // };
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
+  const { user } = useUser();
   const { data, isLoading } = useGetDashboardQuery();
+  // function toCamelCase(str) {
+  //   return str
+  //     .toLowerCase() // Convert the entire string to lowercase
+  //     .split(' ') // Split the string into words by spaces
+  //     .map((word, index) => 
+  //       index === 0 // Keep the first word in lowercase
+  //         ? word 
+  //         : word.charAt(0).toUpperCase() + word.slice(1) // Capitalize the first letter of subsequent words
+  //     )
+  //     .join(''); // Join the words without spaces
+  // }
   console.log(data);
   const columns = [
     {
-      field: "_id",
-      headerName: "ID",
-      flex: 0.5,
-    },
-    {
       field: "createdAt",
       headerName: "LoggedAt",
+      flex: 1,
+    },
+    {
+      field: "foodName",
+      headerName: "Name",
+      flex: 0.5,
+    },  
+    {
+      field: "servingWeightGrams",
+      headerName: "Weight(gm)",
       flex: 0.5,
     },
     {
-      field: "name",
-      headerName: "# of Food",
-      flex: 1,
+      field: "servingQty",
+      headerName: "Quantity",
+      flex: 0.5,
     },
     {
       field: "calories",
       headerName: "Calories",
-      flex: 1,
+      flex: 0.5,
+    },
+    {
+      field: "carbs",
+      headerName: "Carbs",
+      flex: 0.5,
     },
   ];
   // const { monthlyData } = data;
