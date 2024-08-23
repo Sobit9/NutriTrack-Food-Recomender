@@ -4,7 +4,7 @@ import IntakeStat from "../models/MealLog.js"
 
 const router = express.Router();
 
-router.post('/log',authenticate, async (req, res) => {
+router.post('/log', async (req, res) => {
     const { foodName, servingQty, servingUnit, servingWeightGrams, calories, protein, fat, carbs, cholesterol, sodium, sugars, potassium, photo } = req.body;
   
     // Log the received payload
@@ -44,18 +44,21 @@ router.post('/log',authenticate, async (req, res) => {
   
   
   // Get user's food logs
-  router.get('/logs', authenticate, async (req, res) => {
+  router.get('/logs', async (req, res) => {
     try {
-      const foodLogs = await FoodLog.find({ userId: req.user.userId });
-      res.json(foodLogs);
+      const { userId } = req.params;
+        const mealLogs = await IntakeStat.find({ userId });
+
+        res.status(200).json(mealLogs); 
     } catch (error) {
+      console.error("Error fetching meal logs:", error);
       res.status(500).json({ error: error.message });
     }
   });
   
   
   // Update a food log entry
-  router.put('/log/:id', authenticate, async (req, res) => {
+  router.put('/log/:id', async (req, res) => {
     const { id } = req.params;
     const { foodName, servingQty, servingUnit, servingWeightGrams, calories, protein, fat, carbs, cholesterol, sodium, sugars, potassium, photo } = req.body;
   
@@ -85,7 +88,7 @@ router.post('/log',authenticate, async (req, res) => {
   
   
   // Delete a food log entry
-  router.delete('/log/:id',authenticate, async (req, res) => {
+  router.delete('/log/:id', async (req, res) => {
     const { id } = req.params;
   
     try {

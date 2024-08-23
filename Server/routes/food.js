@@ -114,7 +114,7 @@ router.get('/:name', async (req, res) => {
 });
 
 // Endpoint to fetch and store food items - only for authenticated users
-router.post('/addFood', authenticate, async (req, res) => {
+router.post('/addFood', async (req, res) => {
   const { query } = req.body;
 
   try {

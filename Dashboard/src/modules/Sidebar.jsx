@@ -77,18 +77,18 @@ const navItems = [
     text: "Breakdown",
     icon: <PieChartOutlined />,
   },
-  {
-    text: "Management",
-    icon: null,
-  },
-  {
-    text: "Admins",
-    icon: <AdminPanelSettingsOutlined />,
-  },
-  {
-    text: "Performance",
-    icon: <TrendingUpOutlined />,
-  },
+  // {
+  //   text: "Management",
+  //   icon: null,
+  // },
+  // {
+  //   text: "Admins",
+  //   icon: <AdminPanelSettingsOutlined />,
+  // },
+  // {
+  //   text: "Performance",
+  //   icon: <TrendingUpOutlined />,
+  // },
 ];
 
 const Sidebar = ({

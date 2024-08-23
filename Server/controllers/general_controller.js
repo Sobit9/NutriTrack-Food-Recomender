@@ -19,9 +19,10 @@ export const getDashboardStats = async (req, res) => {
     const currentMonth = "May";
     const currentYear = 2023;
     const currentDay = "2023-05-15";
-const userId = User._id;
+// const userId = User._id;
+const _id = User._id;
     /* Recent Log of Foods */
-    const foodLog = await IntakeStat.findById(userId)
+    const foodLog = await IntakeStat.findById(_id)
       .limit(50)
       .sort({ createdOn: -1 });
 

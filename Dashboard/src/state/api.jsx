@@ -27,7 +27,7 @@ export const api = createApi({
     }),
     getFoodLogs: build.query({
       query: (page, pageSize, sort, search) => ({
-        url: "general/dashboard",
+        url: "foodLog/logs",
         method: "GET",
         params: { page, pageSize, sort, search },
       }),

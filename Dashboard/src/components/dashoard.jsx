@@ -17,66 +17,57 @@ import {
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import BreakdownChart from "../modules/BreakdownChart";
-import { useGetDashboardQuery } from "../state/api";
+import { useGetDashboardQuery, useGetFoodLogsQuery } from "../state/api";
 import StatBox from "../modules/StatBox";
 import OverviewChart from "../modules/OverviewChart";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "./Loginpage/authProvider";
-
+import FoodLog from "../components/foodLog"
 export default function dashoard() {
   const [loggedFoods, setLoggedFoods] = useState([]);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const handleViewDetails = (food) => {
-  //   navigate('/foodDetails', { state: { food } });
-  // };
+  const handleViewDetails = (food) => {
+    navigate('/foodDetails', { state: { food } });
+  };
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
-  const { user } = useUser();
   const { data, isLoading } = useGetDashboardQuery();
-  // function toCamelCase(str) {
-  //   return str
-  //     .toLowerCase() // Convert the entire string to lowercase
-  //     .split(' ') // Split the string into words by spaces
-  //     .map((word, index) => 
-  //       index === 0 // Keep the first word in lowercase
-  //         ? word 
-  //         : word.charAt(0).toUpperCase() + word.slice(1) // Capitalize the first letter of subsequent words
-  //     )
-  //     .join(''); // Join the words without spaces
-  // }
-  console.log(data);
-  const columns = [
-    {
-      field: "createdAt",
-      headerName: "LoggedAt",
-      flex: 1,
-    },
-    {
-      field: "foodName",
-      headerName: "Name",
-      flex: 0.5,
-    },  
-    {
-      field: "servingWeightGrams",
-      headerName: "Weight(gm)",
-      flex: 0.5,
-    },
-    {
-      field: "servingQty",
-      headerName: "Quantity",
-      flex: 0.5,
-    },
-    {
-      field: "calories",
-      headerName: "Calories",
-      flex: 0.5,
-    },
-    {
-      field: "carbs",
-      headerName: "Carbs",
-      flex: 0.5,
-    },
-  ];
+  // console.log(data);
+  
+  // const columns = [
+  //   {
+  //     field: "createdAt",
+  //     headerName: "LoggedAt",
+  //     flex: 1,
+  //   },
+  //   {
+  //     field: "foodName",
+  //     headerName: "Name",
+  //     flex: 0.5,
+  //   },  
+  //   {
+  //     field: "servingWeightGrams",
+  //     headerName: "Weight(gm)",
+  //     flex: 0.5,
+  //   },
+  //   {
+  //     field: "servingQty",
+  //     headerName: "Quantity",
+  //     flex: 0.5,
+  //   },
+  //   {
+  //     field: "calories",
+  //     headerName: "Calories",
+  //     flex: 0.5,
+  //   },
+  //   {
+  //     field: "carbs",
+  //     headerName: "Carbs",
+  //     flex: 0.5,
+  //   },
+  // ];
+
   // const { monthlyData } = data;
   // Object.values(monthlyData).reduce(
   //   (acc, { totalCalories}) => {
@@ -203,12 +194,13 @@ export default function dashoard() {
             },
           }}
         >
-          <DataGrid
+          {/* <DataGrid
             loading={isLoading || !data}
             getRowId={(row) => row._id}
             rows={(data && data.foodLog) || []}
             columns={columns}
-          />
+          /> */}
+          <FoodLog isDashboard={true}/>
         </Box>
         <Box
           gridColumn="span 4"
