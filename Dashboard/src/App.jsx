@@ -16,6 +16,7 @@ import Landingpage from "./components/landingpage";
 import Login from "./components/Loginpage/login";
 import Register from "./components/Registerpage/register";
 import Calculate from "./components/Calculate/calculate";
+import Foodrecomender from "./components/foodrecomender";
 // import AboutUs from "./components/AboutUs";
 // import PrivateRoute from "./components/PrivateRoute";
 // import ProtectedComponent from "./components/ProtectedComponent";
@@ -44,11 +45,12 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/food" element={<Food />} />
                 <Route path="/foodLog" element={<FoodLog />} />
-                <Route path="/achievement" element={<Achievements />} />
+                <Route path="/foodrecommender" element={<Foodrecomender />} />
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/daily" element={<Daily />} />
                 <Route path="/monthly" element={<Monthly />} />
                 <Route path="/breakdown" element={<Breakdown />} />
+
                 
               </Route>
             </Routes>

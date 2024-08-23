@@ -59,11 +59,11 @@ app.use("/foodLog", FoodLogRoutes);
 // AI
 app.get("/fetchmeal", async (req, res) => {
   try {
-    const bmr = req.query.bmr || 2330;
-    const uid = req.query.uid || "kosul";
+    const bmr = req.query.bmr || 2530;
+    const uid = req.query.uid || "ganesh";
     const ftype = req.query.ftype || "nonveg";
     const diab = req.query.diab || 0;
-    const lbp = req.query.lbp || 0;
+    const lbp = req.query.lbp || 1;
     const hbp = req.query.hbp || 0;
     await closeconnection(bmr, uid, ftype, diab, lbp, hbp);
     const data = await foodsort(uid);

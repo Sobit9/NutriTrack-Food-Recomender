@@ -50,10 +50,6 @@ const navItems = [
     icon: <Schedule />,
   },
   {
-    text: "Achievements",
-    icon: <ReceiptLongOutlined />,
-  },
-  {
     text: "FoodRecommender",
     icon: <Assistant />,
   },
