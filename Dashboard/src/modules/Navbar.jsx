@@ -33,7 +33,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   const isOpen = Boolean(anchorEl);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
-
+  
   return (
     <AppBar
       sx={{
@@ -84,7 +84,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 textTransform: "none",
                 gap: "1rem",
               }}
-            >
+            ><Link to="/profile">
               <Box
                 component="img"
                 alt="profile"
@@ -93,7 +93,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 width="32px"
                 borderRadius="50%"
                 sx={{ objectFit: "cover" }}
-              />
+              /></Link>
               <Box textAlign="left">
                 <Typography
                   fontWeight="bold"

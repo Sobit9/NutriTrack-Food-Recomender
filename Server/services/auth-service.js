@@ -10,6 +10,7 @@ import {
     sendWelcomeEmail,
 } from "../services/User-service.js"
 import jwt from "jsonwebtoken"
+import axios from 'axios';
 
 export const register = async (userData) => {
     const user = await findUserByEmail(userData.email)
@@ -78,11 +79,37 @@ export const login = async (userData) => {
     }
     
     const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    // localStorage.setItem('authToken', response.data.token);
+    // if (typeof window !== 'undefined') {
+    //     localStorage.setItem('authToken', token);
+    //   }
+    // localStorage.setItem('authToken',token);
     // res.json({ token });
     return (token)
 
 }
+
+export const fetchMealData = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      if (!token) throw new Error("No token found");
+  
+      const response = await axios.get('http://localhost:3000/fetchmeal', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        params: {
+          bmr: 2530,
+          ftype: 'nonveg',
+          diab: 0,
+          lbp: 1,
+          hbp: 0
+        }
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching meal data:", error);
+    }
+  };
 
 
  export default verifyJWT

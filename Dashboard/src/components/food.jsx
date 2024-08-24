@@ -185,14 +185,14 @@ export default function food() {
     setSelectedFood(null); // Clear selected food when closing the dialog
   };
   return (
-    <div className='text-black'>
+    <div className='w-max text-xl text-black'>
     <Box m="1.5rem 2.5rem">
       <Header subtitle="Search for food here." />
       <SearchBar  onLogFood={openDialog} />
         <Card>
 {error && <p style={{ color: 'red' }}>{error}</p>}
       {loggedFoods.length > 0 && (
-        <table>
+        <table className='bg-emerald-950  text-yellow-100'>
           <thead>
             <tr>
               <th>Photo</th>
@@ -214,8 +214,8 @@ export default function food() {
                 <td>{food.servingUnit}</td>
                 <td>{food.servingWeightGrams}</td>
                 <td>
-                  <button onClick={() => handleEditClick(food)}>Edit</button>
-                  <button onClick={() => handleDeleteClick(food._id)}>Delete</button>
+                  <button className='border-amber-500 rounded-md bg-green-400 p-3 m-1' onClick={() => handleEditClick(food)}>Edit</button>
+                  <button className='border-amber-500 rounded-md bg-green-400 p-3 m-1' onClick={() => handleDeleteClick(food._id)}>Delete</button>
                 </td>
               </tr>
             ))}

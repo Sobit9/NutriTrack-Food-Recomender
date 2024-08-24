@@ -63,14 +63,14 @@ router.post('/log', async (req, res) => {
     const { foodName, servingQty, servingUnit, servingWeightGrams, calories, protein, fat, carbs, cholesterol, sodium, sugars, potassium, photo } = req.body;
   
     // Check if all required fields are provided
-    if (!foodName || servingQty === undefined || !servingUnit || servingWeightGrams === undefined || calories === undefined || protein === undefined || fat === undefined || carbs === undefined || cholesterol === undefined || sodium === undefined || sugars === undefined || potassium === undefined || !photo) {
-      return res.status(400).json({ error: 'All nutritional values are required.' });
-    }
+    // if (!foodName || servingQty === undefined || !servingUnit || servingWeightGrams === undefined || calories === undefined || protein === undefined || fat === undefined || carbs === undefined || cholesterol === undefined || sodium === undefined || potassium === undefined || !photo) {
+    //   return res.status(400).json({ error: 'All nutritional values are required.' });
+    // }
   
     try {
       // Find and update the food log entry
-      const updatedFoodLog = await FoodLog.findOneAndUpdate(
-        { _id: id, userId: req.user.userId }, // Ensure the log belongs to the authenticated user
+      const updatedFoodLog = await IntakeStat.findOneAndUpdate(
+        { _id: id }, // Ensure the log belongs to the authenticated user
         { foodName, servingQty, servingUnit, servingWeightGrams, calories, protein, fat, carbs, cholesterol, sodium, sugars, potassium, photo },
         { new: true } // Return the updated document
       );
@@ -92,7 +92,7 @@ router.post('/log', async (req, res) => {
     const { id } = req.params;
   
     try {
-      const foodLog = await FoodLog.findOneAndDelete({ _id: id, userId: req.user.userId });
+      const foodLog = await IntakeStat.findOneAndDelete({ _id: id});
   
       if (!foodLog) {
         return res.status(404).json({ message: 'Food log not found' });

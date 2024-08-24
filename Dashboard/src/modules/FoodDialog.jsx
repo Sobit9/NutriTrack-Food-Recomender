@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Box } from '@mui/material';
 
 const FoodDialog = ({ food, onClose, onLogFood, mode }) => {
   const [servingQty, setServingQty] = useState('');
@@ -92,13 +93,13 @@ const FoodDialog = ({ food, onClose, onLogFood, mode }) => {
   };
 
   return (
-    <div className="dialog-overlay">
-      <div className="dialog-content">
+    <Box width="100%">
+      <div className="w-max text-xl text-yellow-100">
         <h3>{food.foodName} {mode === 'edit' ? '(Edit)' : '(Add)'}</h3>
         <img src={food.photo} alt={food.foodName} />
         <div>
           <label>Serving Quantity:</label>
-          <input
+          <input className='text-black'
             type="number"
             value={servingQty}
             onChange={handleServingQtyChange}
@@ -108,7 +109,7 @@ const FoodDialog = ({ food, onClose, onLogFood, mode }) => {
         </div>
         <div>
           <label>Serving Weight (grams):</label>
-          <input
+          <input className='text-black'
             type="number"
             value={servingWeight}
             onChange={handleServingWeightChange}
@@ -140,11 +141,11 @@ const FoodDialog = ({ food, onClose, onLogFood, mode }) => {
           <label>Potassium: </label>{nutritionalInfo.potassium}mg
         </div>
         <div>
-          <button onClick={handleLogFood}>{mode === 'edit' ? 'Update' : 'Add'} Food</button>
-          <button onClick={onClose}>Cancel</button>
+          <button className='border-amber-500 rounded-md bg-green-400 p-3 m-1' onClick={handleLogFood}>{mode === 'edit' ? 'Update' : 'Add'} Food</button>
+          <button className='border-amber-500 rounded-md bg-green-400 p-3 m-1' onClick={onClose}>Cancel</button>
         </div>
       </div>
-    </div>
+    </Box>
   );
 };
 

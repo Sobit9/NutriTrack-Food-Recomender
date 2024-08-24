@@ -17,6 +17,8 @@ import Login from "./components/Loginpage/login";
 import Register from "./components/Registerpage/register";
 import Calculate from "./components/Calculate/calculate";
 import Foodrecomender from "./components/foodrecomender";
+import Profile from "./components/profile";
+import Edit from "./components/edit";
 // import AboutUs from "./components/AboutUs";
 // import PrivateRoute from "./components/PrivateRoute";
 // import ProtectedComponent from "./components/ProtectedComponent";
@@ -50,7 +52,8 @@ function App() {
                 <Route path="/daily" element={<Daily />} />
                 <Route path="/monthly" element={<Monthly />} />
                 <Route path="/breakdown" element={<Breakdown />} />
-
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/edit" element={<Edit/>} />
                 
               </Route>
             </Routes>

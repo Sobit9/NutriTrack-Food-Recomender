@@ -20,7 +20,7 @@ import searchfood from "..//Dashboard/src/components/admin/searchfood.js";
 // import searchuserindatabase from "..//Dashboard/src/components/admin/searchuserindatabase.js";
 // import adduser22 from "..//Dashboard/src/components/admin/adduser.js";
 // data imports
-// import User from "./models/User.js";
+import User from "./models/User.js";
 // import Food from "./models/foodData.js";
 // import IntakeStat from "./models/MealLog.js";
 // import OverallStat from "./models/OverallStat.js";
@@ -59,6 +59,19 @@ app.use("/foodLog", FoodLogRoutes);
 // AI
 app.get("/fetchmeal", async (req, res) => {
   try {
+    // // Extract token from the Authorization header
+    // const token = req.headers.authorization?.split(' ')[1];
+    // if (!token) return res.status(401).json({ error: "No token provided" });
+
+    // // Verify and decode the token
+    // const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // const userId = decoded.userId;
+
+    // // Fetch user data
+    // const user = await User.findById(userId);
+    // if (!user) return res.status(404).json({ error: "User not found" });
+
+    // Extract query parameters
     const bmr = req.query.bmr || 2530;
     const uid = req.query.uid || "ganesh";
     const ftype = req.query.ftype || "nonveg";
@@ -66,7 +79,7 @@ app.get("/fetchmeal", async (req, res) => {
     const lbp = req.query.lbp || 1;
     const hbp = req.query.hbp || 0;
     await closeconnection(bmr, uid, ftype, diab, lbp, hbp);
-    const data = await foodsort(uid);
+    const data = await foodsort(userId);
     res.status(200).json(data);
     console.log(diab, lbp, hbp);
   } catch (error) {
@@ -74,6 +87,25 @@ app.get("/fetchmeal", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+app.get('/user', async (req, res) => {
+  const email = req.query.email; // Get the email from the query params
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Return user data excluding the password
+    const { password, ...userData } = user._doc;
+    res.json(userData);
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).json({ message: 'Server error' });
+  }
+})
 
 app.post("/email", async (req, res) => {
   const { email } = req.body;
@@ -129,6 +161,27 @@ app.post("/register2", async (req, res) => {
   }
 });
 
+app.put('/profile', async (req, res) => {
+  try {
+    const { email } = req.user; // Get email from authenticated user
+    const updatedData = req.body;
+
+    const updatedUser = await User.findOneAndUpdate(
+      { email: email },
+      updatedData,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    console.error('Error updating user:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 // app.post("/gotodashboard", async (req, res) => {
 //   try {

@@ -20,13 +20,16 @@ import BreakdownChart from "../modules/BreakdownChart";
 import { useGetDashboardQuery, useGetFoodLogsQuery } from "../state/api";
 import StatBox from "../modules/StatBox";
 import OverviewChart from "../modules/OverviewChart";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "./Loginpage/authProvider";
 import FoodLog from "../components/foodLog"
 export default function dashoard() {
-  const [loggedFoods, setLoggedFoods] = useState([]);
+  const location = useLocation();
+  const { totalCalories } = location.state || { totalCalories: 0 };
+  const roundedCalories = Math.floor(totalCalories)
   const navigate = useNavigate();
-
+const data1 = sessionStorage.getItem('sessionData');
+console.log("data11",data1);
   const handleViewDetails = (food) => {
     navigate('/foodDetails', { state: { food } });
   };
@@ -112,7 +115,7 @@ export default function dashoard() {
         {/* ROW 1 */}
         <StatBox
           title="Todays Cal Report"
-          value={data && data.todayStats.totalCalories}
+          value={roundedCalories}
           con="+14%"
           description="Since last month"
           icon={

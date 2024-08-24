@@ -72,29 +72,48 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import Navbar from "./../Navbar";
 import { useUser } from "./authProvider";
-// import axios from "axios"
-// import api from "../../api"
-// export const useAuth = () => {
-//   return useContext(AuthContext);
-// };
+import axios from 'axios';
 
+// const fetchMealData = async () => {
+//   try {
+//     const token = localStorage.getItem('authToken');
+//     if (!token) throw new Error("No token found");
 
-
+//     const response = await axios.get('http://localhost:3000/fetchmeal', {
+//       headers: {
+//         Authorization: `Bearer ${token}`
+//       },
+//       params: {
+//         bmr: 2530,
+//         ftype: 'nonveg',
+//         diab: 0,
+//         lbp: 1,
+//         hbp: 0
+//       }
+//     });
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error fetching meal data:", error);
+//     throw error;
+//   }
+// }
   const Login = () => {
     const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
     const navigate = useNavigate(); // Hook for navigation
     const authContext = useUser();
-    // console.log("useAuth output:", authContext);
     const { login } = authContext;
-    // const handleChange = (e) => {
-    //   setCredentials({ ...credentials, [e.target.name]: e.target.value });
-    // };
+
   
     const handleSubmit = async (e) => {
       e.preventDefault();
       const success = await login(email, password);
         if (success) {
+          const response = await axios.get(`http://localhost:3000/user?email=${email}`);
+        const userData = response.data; 
+        localStorage.setItem('userData', JSON.stringify(userData));
+          sessionStorage.setItem('sessionData', JSON.stringify(userData));
+          fetchMealData
          // Save the user data in the context
           navigate('/dashboard'); // Redirect using navigate
         
