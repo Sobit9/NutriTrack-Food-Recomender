@@ -86,21 +86,21 @@ export const tokensDark = {
               // palette values for light mode
               primary: {
                 ...tokensLight.primary,
-                main: tokensDark.black[200],
-                light: tokensDark.black[300],
+                main: tokensDark.black[300],
+                light: tokensDark.black[400],
               },
               secondary: {
                 ...tokensLight.secondary,
-                main: tokensDark.secondary[600],
-                light: tokensDark.secondary[700],
+                main: tokensDark.secondary[700],
+                light: tokensDark.secondary[800],
               },
               neutral: {
                 ...tokensLight.black,
-                main: tokensDark.black[500],
+                main: tokensDark.black[600],
               },
               background: {
-                default: tokensDark.black[200],
-                alt: tokensDark.black[300],
+                default: tokensDark.black[300],
+                alt: tokensDark.black[400],
               },
             }),
       },

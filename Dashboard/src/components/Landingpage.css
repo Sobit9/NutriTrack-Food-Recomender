@@ -209,8 +209,9 @@ nav {
 }
 
 .home-image-section img {
-  max-width: 800px;
-  height: 500px;
+  max-width: 1000px;
+  height: 700px;
+  margin-left: -50px;
 }
 
 .home-text-section {
@@ -1232,7 +1233,7 @@ nav {
 
 .carouselz {
   position: absolute;
-  top: 160px;
+  top: 100px;
   right: 50px;
   width: 440px;
   height: 240px;
@@ -1339,7 +1340,7 @@ nav {
   max-width: 110px;
 }
 .footer-icons {
-  margin-top: 2.5rem;
+  margin-top: 1rem;
 }
 .footer-icons svg {
   font-size: 1.5rem;
@@ -1350,8 +1351,11 @@ nav {
   border: 2px solid blue;
 } */
 .footer-section-two {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
   flex: 1;
   display: flex;
+  gap: 150px;
   justify-content: flex-end;
 }
 .footer-section-columns {
@@ -1718,14 +1722,15 @@ nav {
 /* recomendation starts here */
 
 .recomender {
-  margin-top: 50px;
+  margin-top: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-left: -50px;
   gap: 10px;
-  height: 100svh;
-  width: 100svw;
+  height: 90svh;
+  width: 90svw;
 }
 .recbutton {
   width: 200px;
@@ -1738,34 +1743,54 @@ nav {
   cursor: pointer;
 }
 .recomendedmeal {
-  width: 60%;
-  height: 350px;
+  width: 80%;
+  height: 550px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: row;
-  background-color: rgba(20, 102, 190, 0.4);
+  background-color: rgba(2, 74, 26, 0.4);
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(16px);
   border-radius: 20px;
+  /* margin-left: -250px */
 }
 .blockrec {
   display: none;
 }
-
+.recbutton:hover {
+  background-color: rgba(220, 66, 66, 0.6);
+  color: white;
+}
 .RECC {
-  width: 250px;
-  height: 300px;
+  width: 350px;
+  height: 500px;
   border-radius: 10px;
-  background-color: rgba(20, 102, 190, 0.5);
+  background-color: rgba(20, 190, 77, 0.5);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
+.RECC h2 {
+  color: white;
+  font-size: 15px;
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 10px;
+}
+
+.RECC h1 {
+  color: rgb(8, 15, 15);
+  font-size: 25px;
+  margin-left: 50px
+}
 /* recomendation ends here */
 
 /* 77.js starts */
@@ -1773,6 +1798,11 @@ nav {
 .aitemp {
   width: 100svw;
   height: 200svh;
+}
+.ai21 img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
 }
 .aitemp1 {
   width: 100svw;
@@ -1794,7 +1824,6 @@ nav {
   right: -700px;
   width: 400px;
   height: 250px;
-  background-color: #101d29;
   border-radius: 15px;
 }
 
@@ -1804,7 +1833,6 @@ nav {
   left: 100px;
   width: 400px;
   height: 250px;
-  background-color: #96c7f5;
   border-radius: 15px;
 }
 
@@ -1849,10 +1877,9 @@ nav {
   z-index: 5;
 }
 
-/* .myimage img {
-  width: 50%;
-  height: 10%;
-} */
+.aitemp3 img {
+  margin-top: -5rem;
+}
 
 .myinfo h2 {
   font-size: 50px;
@@ -1869,8 +1896,8 @@ nav {
   margin-top: -380px;
 }
 .aitemp32 {
-  width: 250px;
-  height: 300px;
+  width: 350px;
+  height: 200px;
   border-radius: 20px;
   position: sticky;
   top: 150px;
@@ -1879,7 +1906,7 @@ nav {
 }
 
 .aitemp33 {
-  width: 250px;
+  width: 550px;
   height: 300px;
   border-radius: 20px;
   position: sticky;
@@ -1887,13 +1914,19 @@ nav {
   left: 250px;
   margin-top: 40px;
 }
-
+.aitemp33 img {
+  width: 450px;
+  height: 350px;
+  margin-top: -4rem;
+  margin-left: -6rem;
+  border-radius: 20px;
+}
 .aitemp34 {
   width: 250px;
   height: 300px;
   border-radius: 20px;
   position: sticky;
-  top: 480px;
+  top: 450px;
   left: 1000px;
   margin-top: -350px;
 }
@@ -1918,7 +1951,7 @@ nav {
 
 .aitemp4 {
   width: 100svw;
-  height: 420svh;
+  height: 465svh;
   background-color: #101d29;
   display: flex;
   align-items: center;
@@ -1937,12 +1970,43 @@ nav {
   width: 83svw;
   height: 80svh;
   border-radius: 40px;
-  margin-top: 10rem;
+  margin-top: 15rem;
   gap: 25rem;
 }
+
+.aitemp42 .myimage2 img {
+  width: 500px;
+  height: 600px;
+  margin-top: -7rem;
+  margin-left: -2rem;
+  border-radius: 20px;
+}
+
+.aitemp42 .myinfo2 h2 {
+  margin-left: 00px;
+}
+
+.aitemp44 {
+  margin-top: 25rem;
+  width: 100svw;
+  height: 20svh;
+}
+.aitemp44 .myimage2 img {
+  width: 1000px;
+  height: 600px;
+  margin-top: -7rem;
+  margin-left: -10rem;
+  border-radius: 20px;
+}
+.aitemp44 .myinfo2 h2 {
+  margin-left: -400px;
+}
+
 .myinfo2 h2 {
-  font-size: 100px;
+  font-size: 90px;
   color: white;
+  margin-top: 5rem;
+  margin-left: -5rem;
 }
 
 /* 77.js ends */
@@ -2133,7 +2197,20 @@ admin starts */
   justify-content: space-evenly;
   z-index: 6;
 }
-
+.adminusershow2 {
+  position: fixed;
+  top: 30px;
+  left: 30%;
+  margin-top: 70px;
+  width: 460px;
+  height: 550px;
+  background-color: rgb(207, 175, 175);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: 66;
+}
 .adminusershowcancel {
   position: absolute;
   top: 10px;
@@ -2157,6 +2234,14 @@ admin starts */
   justify-content: space-evenly;
   overflow: auto;
 }
+
+.adminfoodshoww {
+  color: rgb(17, 17, 17);
+  font-size: 30px;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+}
 .checkmuj {
   width: 500px;
   height: 100px;
@@ -2175,6 +2260,23 @@ admin starts */
 .foodbtnsgap {
   display: flex;
   gap: 10px;
+}
+
+.showfoodbtn {
+  width: 60px;
+  height: 40px;
+  background-color: #dce7db;
+  color: rgb(240, 7, 7);
+  border-radius: 8px;
+  box-shadow: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.showfoodbtn:hover {
+  background-color: rgb(101, 9, 104);
+  color: rgb(240, 231, 231);
 }
 
 .editfoodbtn {
@@ -2282,4 +2384,76 @@ admin ends */
   animation: fadein linear;
   animation-timeline: scroll();
   animation-range: entry 0 cover 50%;
+}
+
+.fooddisplay1 {
+  width: 100svw;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fooddisplay2 {
+  width: 100svw;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fooddisplay202 {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.showfood202 {
+  position: absolute;
+  top: 100px;
+  left: 25%;
+  z-index: 9999;
+  width: 400px;
+  height: 600px;
+  background-color: #101d29;
+  cursor: pointer;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.showfood203 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.checkmuj2 {
+  width: 500px;
+  height: 100px;
+  background-color: #3489c1;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.showfood202:hover {
+  background-color: white;
+  color: black;
 }

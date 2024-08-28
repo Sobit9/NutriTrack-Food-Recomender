@@ -22,175 +22,7 @@ import {
 } from "recharts";
 ("recharts");
 import "./Landingpage.css";
-
-const data = [
-  {
-    name: "Jan",
-    "User Gain": 1800,
-  },
-  {
-    name: "Feb",
-    "User Gain": 3000,
-  },
-  {
-    name: "Mar",
-    "User Gain": 2000,
-  },
-  {
-    name: "Apr",
-    "User Gain": 2780,
-  },
-  {
-    name: "May",
-    "User Gain": 1890,
-  },
-  {
-    name: "Jun",
-    "User Gain": 2390,
-  },
-  {
-    name: "Jul",
-    "User Gain": 0,
-  },
-  {
-    name: "Aug",
-    "User Gain": 0,
-  },
-  {
-    name: "Sep",
-    "User Gain": 0,
-  },
-  {
-    name: "Oct",
-    "User Gain": 0,
-  },
-  {
-    name: "Nov",
-    "User Gain": 0,
-  },
-  {
-    name: "Dec",
-    "User Gain": 0,
-  },
-];
-const data2 = [
-  {
-    name: "Male",
-    Number: 2800,
-  },
-  {
-    name: "Female",
-    Number: 3000,
-  },
-];
-const COLORS2 = ["#0088FE", "#00C49F"];
-
-const data3 = [
-  {
-    name: "Diabities",
-    Number: 1800,
-  },
-  {
-    name: "Low BP",
-    Number: 2000,
-  },
-  {
-    name: "High BP",
-    Number: 1500,
-  },
-  {
-    name: "Diabities + Low BP",
-    Number: 550,
-  },
-  {
-    name: "Diabities + High BP",
-    Number: 300,
-  },
-  {
-    name: "None",
-    Number: 3000,
-  },
-];
-const COLORS3 = [
-  "#0088FE",
-  "#00C49F",
-  "#FFBB28",
-  "#FF8042",
-  "#AF19FF",
-  "#00C49F",
-];
-const data4 = [
-  { name: "Minor(0-17)", Number: 2200 },
-  { name: "Adult(18-60)", Number: 3000 },
-  { name: "Older(60+)", Number: 1200 },
-];
-
-const data5 = [
-  {
-    name: "Veg",
-    Number: 2800,
-  },
-  {
-    name: "Non-Veg",
-    Number: 3000,
-  },
-];
-const COLORS5 = ["#0088FA", "#0b0b0b"];
-
-const data6 = [
-  {
-    name: "Very Low",
-    Calory: 150,
-  },
-  {
-    name: "Low",
-    Calory: 300,
-  },
-  {
-    name: "Med",
-    Calory: 700,
-  },
-  {
-    name: "High",
-    Calory: 900,
-  },
-  {
-    name: "Very High",
-    Calory: 680,
-  },
-];
-
-const data7 = [
-  {
-    name: "Breakfast",
-    Number: 2800,
-  },
-  {
-    name: "Lunch",
-    Number: 3000,
-  },
-  {
-    name: "Dinner",
-    Number: 1200,
-  },
-];
-
-const COLORS7 = ["#0088FE", "#00C49F", "#FFBB28"];
-
-const data8 = [
-  {
-    Year: 2022,
-    Number: 1800,
-  },
-  {
-    Year: 2023,
-    Number: 2100,
-  },
-  {
-    Year: 2024,
-    Number: 2800,
-  },
-];
+import { set } from "mongoose";
 
 const Admin = () => {
   const usercontrol = useRef(null);
@@ -203,18 +35,218 @@ const Admin = () => {
   const page = useRef(null);
   const show = useRef(null);
   const show2 = useRef(null);
+  const show3 = useRef(null);
+  const show4 = useRef(null);
   const showcancel = useRef(null);
   const showuserforedit = useRef(null);
+  const [myuser, setmyuser] = useState([]);
+  const [myuser2, setmyuser2] = useState([]);
+  const [myuserid, setmyuserid] = useState([]);
+  const [myuserid2, setmyuserid2] = useState([]);
+  const [myobject, setmyobject] = useState({});
+  const [foodcontroldata, setfoodcontroldata] = useState([[], [], [], []]);
   const [search1, setsearch1] = useState("");
   const [search2, setsearch2] = useState("");
   const [subject, setsubject] = useState("");
   const [message, setmessage] = useState("");
 
+  const [displayuser, setdisplayuser] = useState([]);
+
+  const data = [
+    {
+      name: "Jan",
+      "User Gain": 1800,
+    },
+    {
+      name: "Feb",
+      "User Gain": 3000,
+    },
+    {
+      name: "Mar",
+      "User Gain": 2000,
+    },
+    {
+      name: "Apr",
+      "User Gain": 2780,
+    },
+    {
+      name: "May",
+      "User Gain": 1890,
+    },
+    {
+      name: "Jun",
+      "User Gain": 2390,
+    },
+    {
+      name: "Jul",
+      "User Gain": 0,
+    },
+    {
+      name: "Aug",
+      "User Gain": 0,
+    },
+    {
+      name: "Sep",
+      "User Gain": 0,
+    },
+    {
+      name: "Oct",
+      "User Gain": 0,
+    },
+    {
+      name: "Nov",
+      "User Gain": 0,
+    },
+    {
+      name: "Dec",
+      "User Gain": 0,
+    },
+  ];
+  const data2 = [
+    {
+      name: "Male",
+      Number: 2800,
+    },
+    {
+      name: "Female",
+      Number: 3000,
+    },
+  ];
+  const COLORS2 = ["#0088FE", "#00C49F"];
+
+  const data3 = [
+    {
+      name: "Diabities",
+      Number: 1800,
+    },
+    {
+      name: "Low BP",
+      Number: 2000,
+    },
+    {
+      name: "High BP",
+      Number: 1500,
+    },
+    {
+      name: "Diabities + Low BP",
+      Number: 550,
+    },
+    {
+      name: "Diabities + High BP",
+      Number: 300,
+    },
+    {
+      name: "None",
+      Number: 3000,
+    },
+  ];
+  const COLORS3 = [
+    "#0088FE",
+    "#00C49F",
+    "#FFBB28",
+    "#FF8042",
+    "#AF19FF",
+    "#00C49F",
+  ];
+  const data4 = [
+    { name: "Minor(0-17)", Number: 2200 },
+    { name: "Adult(18-60)", Number: 3000 },
+    { name: "Older(60+)", Number: 1200 },
+  ];
+  const data5 = [
+    {
+      name: "Veg",
+      Number: foodcontroldata[0][0],
+    },
+    {
+      name: "Non-Veg",
+      Number: foodcontroldata[0][1],
+    },
+  ];
+  const COLORS5 = ["#0088FA", "#0b0b0b"];
+
+  const data6 = [
+    {
+      name: "Very Low",
+      Calory: foodcontroldata[1][0],
+    },
+    {
+      name: "Low",
+      Calory: foodcontroldata[1][1],
+    },
+    {
+      name: "Med",
+      Calory: foodcontroldata[1][2],
+    },
+    {
+      name: "High",
+      Calory: foodcontroldata[1][3],
+    },
+    {
+      name: "Very High",
+      Calory: foodcontroldata[1][4],
+    },
+  ];
+
+  const data7 = [
+    {
+      name: "Breakfast",
+      Number: foodcontroldata[2][0],
+    },
+    {
+      name: "Lunch",
+      Number: foodcontroldata[2][1],
+    },
+    {
+      name: "Dinner",
+      Number: foodcontroldata[2][2],
+    },
+  ];
+
+  const COLORS7 = ["#0088FE", "#00C49F", "#FFBB28"];
+
+  const data8 = [
+    {
+      Year: 2022,
+      Number: foodcontroldata[3][0],
+    },
+    {
+      Year: 2023,
+      Number: foodcontroldata[3][1],
+    },
+    {
+      Year: 2024,
+      Number: foodcontroldata[3][2],
+    },
+  ];
+
   const showuser = async (a) => {
     if (search1) {
       if (a == 0) {
-        show.current.classList.remove("signblock");
-        // showuserforedit.current.textContent = search1;
+        try {
+          const response = await fetch("http://localhost:3000/usersearch", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ search: search1 }),
+          });
+          const data = await response.json();
+          const userarray = data.user;
+
+          const extractedUsernames = userarray.map((user) => user.uname);
+          const userid = userarray.map((user) => user.user_id);
+          setmyuserid(userid);
+          setmyuser(extractedUsernames);
+          if (userarray.length == 0) {
+            alert("No food found");
+          } else {
+            show.current.classList.remove("signblock");
+            setdisplayuser(extractedUsernames);
+          }
+        } catch (error) {
+          console.error("Error adding email:", error);
+        }
       }
       if (a == 1) {
         show.current.classList.add("signblock");
@@ -225,6 +257,7 @@ const Admin = () => {
   };
 
   const [fooddisplaylist, setfooddisplaylist] = useState([]);
+  const [foodfullinfo, setfoodfullinfo] = useState([]);
 
   const showfood = async (a) => {
     if (search2) {
@@ -239,14 +272,21 @@ const Admin = () => {
           });
           const data = await response.json();
           const foodarray = data.food;
-          if (foodarray.length == 0) {
-            alert("No food found");
-          } else {
-            show2.current.classList.remove("signblock");
-            setfooddisplaylist(foodarray);
+          const foodname = [];
+          for (const food of foodarray) {
+            foodname.push(food.food_name);
           }
+          console.log(foodarray);
+          setfooddisplaylist(foodname);
+            setfoodfullinfo(foodarray);
+          if (foodname.length == 0) {
+            alert("No food found");
+          } 
         } catch (error) {
           console.error("Error adding email:", error);
+        }finally{
+          show2.current.classList.remove("signblock");
+
         }
       }
       if (a == 1) {
@@ -284,7 +324,7 @@ const Admin = () => {
     }
   };
 
-  const modalopen = (a) => {
+  const modalopen = async (a) => {
     if (a == 0) {
       foodcontrol.current.classList.add("signblock");
       mail.current.classList.add("signblock");
@@ -294,6 +334,7 @@ const Admin = () => {
       adm3.current.classList.remove("admactive");
       adm4.current.classList.remove("admactive");
       page.current.classList.add("signblock");
+      setfoodcontroldata([[], [], [], []]);
     } else if (a == 1) {
       usercontrol.current.classList.add("signblock");
       mail.current.classList.add("signblock");
@@ -302,8 +343,21 @@ const Admin = () => {
       adm2.current.classList.add("admactive");
       adm3.current.classList.remove("admactive");
       adm4.current.classList.remove("admactive");
-
       page.current.classList.add("signblock");
+
+      try {
+        const response = await fetch("http://localhost:3000/admindata5", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        console.log(data[0][1]);
+        setfoodcontroldata(data);
+      } catch (error) {
+        console.error("Error adding email:", error);
+      }
     } else if (a == 2) {
       usercontrol.current.classList.add("signblock");
       foodcontrol.current.classList.add("signblock");
@@ -325,13 +379,60 @@ const Admin = () => {
     }
   };
 
+  const showsfood = (a, b) => {
+    console.log(foodfullinfo[b]);
+    if (a == 0) {
+      show3.current.classList.add("signblock");
+    } else if (a !== 0) {
+      setmyobject(foodfullinfo[b]);
+      show3.current.classList.remove("signblock");
+    }
+  };
+
+  const showsuser = (a, b) => {
+    console.log(myuser[b]);
+    console.log(myuserid[b]);
+    console.log(a, b);
+    if (a == 0) {
+      show4.current.classList.add("signblock");
+    } else if (a !== 0) {
+      setmyuser2(myuser[b]);
+      setmyuserid2(myuserid[b]);
+      show4.current.classList.remove("signblock");
+    }
+  };
+
+  const deleteuser = async (a, b) => {
+    console.log(a, b);
+    const j = myuserid[b];
+    console.log(j);
+    try {
+      const response = await fetch("http://localhost:3000/deleteuser", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ uname: a, user_id: j }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("User deleted successfully:", result);
+      } else {
+        console.error("Failed to delete user:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <>
       <div className="admin">
         <div className="admin101">
           <div className="admphoto"></div>
           <div className="adm" style={{ color: "white" }}>
-            Name
+            ADMIN
           </div>
           <div
             className="adm admactive"
@@ -353,8 +454,20 @@ const Admin = () => {
         </div>
         <div className="admin102">
           <div className="admx usercharts" ref={usercontrol}>
+            <div className="adminusershow2 signblock" ref={show4}>
+              <div
+                className="adminusershowcancel"
+                onClick={() => showsuser(0, 0)}
+              >
+                <MdCancel />
+              </div>
+              <div className="adminfoodshoww">
+                <div>Name:{myuser2}</div>
+                <div>User_ID:{myuserid2}</div>
+              </div>
+            </div>
             <div className="auchart1 ">
-              <select className="auchart1select">
+              <select className="auchart1select text-black">
                 <option value="Year">2024</option>
                 <option value="Year">2023</option>
                 <option value="Year">2022</option>
@@ -383,13 +496,23 @@ const Admin = () => {
               </LineChart>
             </div>
             <div className="auchart2">
-              <PieChart width={450} height={300}>
+              <h2
+                style={{
+                  textAlign: "center",
+                  color: "black",
+                  marginTop: "10px",
+                  fontSize: "20px",
+                }}
+              >
+                Gender Distribution
+              </h2>
+              <PieChart width={400} height={250}>
                 <Pie
                   data={data2}
                   cx={180}
-                  cy={140}
+                  cy={120}
                   innerRadius={40}
-                  outerRadius={100}
+                  outerRadius={80}
                   fill="#8884d8"
                   paddingAngle={0}
                   dataKey="Number"
@@ -407,13 +530,22 @@ const Admin = () => {
               </PieChart>
             </div>
             <div className="auchart3">
-              <PieChart width={400} height={300}>
+              <h2
+                style={{
+                  textAlign: "center",
+                  color: "white",
+                  fontSize: "20px",
+                }}
+              >
+                Healt Status
+              </h2>
+              <PieChart width={400} height={280}>
                 <Pie
                   data={data3}
                   cx={200}
                   cy={110}
-                  innerRadius={40}
-                  outerRadius={80}
+                  innerRadius={30}
+                  outerRadius={60}
                   fill="#8884d8"
                   paddingAngle={0}
                   dataKey="Number"
@@ -431,6 +563,15 @@ const Admin = () => {
               </PieChart>
             </div>
             <div className="auchart4">
+              <h2
+                style={{
+                  textAlign: "center",
+                  color: "white",
+                  fontSize: "20px",
+                }}
+              >
+                User Distribution
+              </h2>
               <BarChart
                 width={450}
                 height={250}
@@ -464,15 +605,33 @@ const Admin = () => {
                 <MdCancel />
               </div>
               <div className="adminusershow1" ref={showuserforedit}>
-                <div className="checkmuj"></div>
-                <div className="checkmuj"></div>
-                <div className="checkmuj"></div>
-                <div className="checkmuj"></div>
-                <div className="checkmuj"></div>
-                <div className="checkmuj"></div>
-                <div className="checkmuj"></div>
-                <div className="checkmuj"></div>
-                <div className="checkmuj"></div>
+                <ul>
+                  {displayuser.map((user, index) => (
+                    <li key={index} className="checkmuj">
+                      <div> {user}</div>
+                      <div className="foodbtnsgap">
+                        <button
+                          className="showfoodbtn"
+                          onClick={() => showsuser(user, index)}
+                        >
+                          Show
+                        </button>
+                        <button
+                          className="editfoodbtn"
+                          onClick={() => edituser(user, index)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="deletefoodbtn"
+                          onClick={() => deleteuser(user, index)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -495,9 +654,15 @@ const Admin = () => {
               <div className="adminusershow1" ref={showuserforedit}>
                 <ul>
                   {fooddisplaylist.map((food, index) => (
-                    <li key={index} className="checkmuj">
+                    <li key={index} className="checkmuj text-black">
                       <div> {food}</div>
                       <div className="foodbtnsgap">
+                        <button
+                          className="showfoodbtn"
+                          onClick={() => showsfood(food, index)}
+                        >
+                          Show
+                        </button>
                         <button
                           className="editfoodbtn"
                           onClick={() => editfood(food, index)}
@@ -514,6 +679,22 @@ const Admin = () => {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+            <div className="adminusershow2 signblock" ref={show3}>
+              <div
+                className="adminusershowcancel"
+                onClick={() => showsfood(0, 0)}
+              >
+                <MdCancel />
+              </div>
+              <div className="adminfoodshoww">
+                <div>Name:{myobject.food_name}</div>
+                <div>Serving_WT:{myobject.serving_weight_grams}gm</div>
+                <div>Calories:{myobject.nf_calories}</div>
+                <div>Protein:{myobject.nf_protein}gm</div>
+                <div>Carbs:{myobject.nf_total_carbohydrate}gm</div>
+                <div>Fat:{myobject.nf_total_fat}gm</div>
               </div>
             </div>
             <div className="afchart1">

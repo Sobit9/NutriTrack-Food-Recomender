@@ -35,8 +35,9 @@ const About = () => {
             Food Is An Important Part Of A Balanced Diet
           </h1>
           <p className="about-text animate-pop-in">
-            Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et
-            elit. Dolor turpis molestie dui magnis facilisis at fringilla quam.
+            Your body needs food to sustain life.It is essential for overall
+            health and well-being. A balanced diet provides the necessary
+            nutrients that the body needs to function properly.
           </p>
         </div>
       </div>

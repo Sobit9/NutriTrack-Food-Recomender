@@ -1,21 +1,47 @@
-import React from "react";
-
+import React, { useState } from "react";
 const Contact = () => {
+  const [email, setEmail] = useState("");
+  const handleSearch = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+
+      if (response.ok) {
+        console.log("email updated");
+        alert("email updated ");
+      } else {
+      }
+    } catch (error) {
+      console.error("Error adding email:", error);
+      setMessage("Failed to add email. Please try again.");
+    }
+  };
+
   return (
     <div className="contact-page-wrapper">
-      <h1 className="opacity-0 text-gray-600 max-w-[500px] text-lg sm:text-xl md:text-2xl my-6 animate-pop-in sm:text-center sm:max-w-[80%]">
-        Have Question In Mind?
-      </h1>
-      <h1 className="opacity-0 text-gray-600 max-w-[500px] text-lg sm:text-xl md:text-2xl my-6 animate-pop-in sm:text-center sm:max-w-[80%]">
-        Let Us Help You
-      </h1>
-      <div className="contact-form-container sm:py-2 sm:flex-col sm:justify-center sm:items-center sm:rounded-lg">
+      <h1 className="primary-heading">Have Question In Mind?</h1>
+      <h1 className="primary-heading">Let Us Help You</h1>
+      <div className="contact-form-container">
         <input
-          className="sm:text-base sm:max-w-full sm:py-2 sm:mb-3 sm:text-center"
           type="text"
           placeholder="yourmail@gmail.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{color: 'black'}}
         />
-        <button className="sm:text-base sm:py-3 sm:px-8 opacity-0 py-4 px-10 bg-[#fe9e0d] outline-none border-none rounded-full text-lg font-semibold text-white transition duration-200 flex items-center justify-center hover:bg-[#e2ae5f] animate-pop-in">
+        <button
+          className="secondary-button"
+          style={{ textDecoration: "none" }}
+          onClick={handleSearch}
+        >
           Submit
         </button>
       </div>

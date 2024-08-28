@@ -8,10 +8,9 @@ import imgf4 from "../assets/cake.png";
 import imgf5 from "../assets/pizza.png";
 import imgf6 from "../assets/fruit.png";
 import imgf7 from "../assets/vegmix.png";
-import imgf8 from "../assets/fitgirl.png";
+import imgf8 from "../assets/ganesh2.png";
 import imgf9 from "../assets/salad.png";
 import imgf10 from "../assets/fruitjuice.png";
-// import api from './../api';
 
 const Work = () => {
   const divToWatchRef = useRef(null); // Create a ref for the div to watch

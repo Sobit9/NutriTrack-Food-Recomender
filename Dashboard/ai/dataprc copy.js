@@ -242,7 +242,7 @@ const sortfood = async (uid, diab, lbp, hbp) => {
         if (result2.length !== 0) {
           await RFood.findOneAndUpdate(
             { user_id: user.user_id },
-            { $set: { foods: result } },
+            { $set: { foods: result2 } },
             { upsert: true, new: true }
           );
         }

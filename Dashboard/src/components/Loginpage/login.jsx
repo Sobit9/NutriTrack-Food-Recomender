@@ -113,7 +113,7 @@ import axios from 'axios';
         const userData = response.data; 
         localStorage.setItem('userData', JSON.stringify(userData));
           sessionStorage.setItem('sessionData', JSON.stringify(userData));
-          fetchMealData
+          // fetchMealData
          // Save the user data in the context
           navigate('/dashboard'); // Redirect using navigate
         

@@ -2,6 +2,8 @@ import React from "react";
 import BannerBackground from "../assets/home-banner-background.png";
 import BannerImage from "../assets/homeimg.png";
 import { FiArrowRight } from "react-icons/fi";
+import {Link} from "react-router-dom";
+import imgx from "../assets/ganesh.png"
 const Home = () => {
   return (
     <div className="home-container">
@@ -16,12 +18,21 @@ const Home = () => {
           <p className="primary-text animate-pop-in">
             Track what you eat, how much you eat and your weight.
           </p>
-          <button className="secondary-button animate-pop-in">
-            Calculate Now <FiArrowRight />{" "}
+          <button
+            className="secondary-button animate-pop-in"
+            style={{ opacity: "0" }}
+          >
+            <Link
+              to="/calculate"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              Calculate BMI/BMR Now
+            </Link>{" "}
+            <FiArrowRight />{" "}
           </button>
         </div>
         <div className="home-image-section b112">
-          <img src={BannerImage} alt="" />
+          <img src={imgx} alt="" />
         </div>
       </div>
     </div>

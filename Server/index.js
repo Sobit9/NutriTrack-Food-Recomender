@@ -14,9 +14,13 @@ import FoodRoutes from "./routes/food.js";
 import FoodLogRoutes from "./routes/foodLog.js";
 import foodsort from "../Dashboard/src/components/router/foodsort.js"; // Adjust the import if necessary
 import closeconnection from "../Dashboard/ai/dataprc copy.js";
-import emailadderr from "..//Dashboard/src/components/Database/emailadder.js";
-import emailsend from "..//Dashboard/src/components/admin/emailsender.js";
-import searchfood from "..//Dashboard/src/components/admin/searchfood.js";
+import emailadderr from "../Dashboard/src/components/Database/emailadder.js";
+import emailsend from "../Dashboard/src/components/admin/emailsender.js";
+import searchfood from "../Dashboard/src/components/admin/searchfood.js";
+import searchuser from "../Dashboard/src/components/admin/searchuser.js";
+import data5 from "../Dashboard/src/components/admin/admindata5.js";
+import deleteuser from "../Dashboard/src/components/admin/deleteuser.js";
+
 // import searchuserindatabase from "..//Dashboard/src/components/admin/searchuserindatabase.js";
 // import adduser22 from "..//Dashboard/src/components/admin/adduser.js";
 // data imports
@@ -72,14 +76,14 @@ app.get("/fetchmeal", async (req, res) => {
     // if (!user) return res.status(404).json({ error: "User not found" });
 
     // Extract query parameters
-    const bmr = req.query.bmr || 2530;
-    const uid = req.query.uid || "ganesh";
+    const bmr = req.query.bmr || 2330;
+    const uid = req.query.uid || "kosul";
     const ftype = req.query.ftype || "nonveg";
     const diab = req.query.diab || 0;
     const lbp = req.query.lbp || 1;
     const hbp = req.query.hbp || 0;
     await closeconnection(bmr, uid, ftype, diab, lbp, hbp);
-    const data = await foodsort(userId);
+    const data = await foodsort(uid);
     res.status(200).json(data);
     console.log(diab, lbp, hbp);
   } catch (error) {
@@ -141,7 +145,6 @@ app.post("/foodsearch", async (req, res) => {
   try {
     const { search } = req.body;
     const food = await searchfood(search);
-    console.log(food);
     res.status(200).json({ food });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
@@ -180,6 +183,31 @@ app.put('/profile', async (req, res) => {
   } catch (error) {
     console.error('Error updating user:', error);
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+app.post("/usersearch", async (req, res) => {
+  try {
+    const { search } = req.body;
+    const user = await searchuser(search);
+    res.status(200).json({ user });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.get("/admindata5", async (req, res) => {
+  const data = await data5();
+  res.send(data);
+});
+
+app.delete("/deleteuser", async (req, res) => {
+  try {
+    const { uname, user_id } = req.body;
+    await deleteuser(uname, user_id);
+    // console.log(uname, user_id);
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

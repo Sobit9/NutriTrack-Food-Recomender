@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import {Link} from "react-router-dom"
 export default function edit() {
     const [userData, setUserData] = useState(null);
   const [formData, setFormData] = useState({
@@ -70,7 +70,7 @@ export default function edit() {
     <div className='flex flex-col'>
         <div >
       <h2>Edit Profile</h2>
-      <form className='flex items-center flex-col' onSubmit={handleSubmit}>
+      <form className='flex items-center flex-col text-black' onSubmit={handleSubmit}>
         <label>Name:</label>
         <input
           type="text"
@@ -182,8 +182,8 @@ export default function edit() {
           name="role"
           value={formData.role}
           onChange={handleChange}
-        />
-        <button className="border-amber-500 rounded-md bg-green-400 p-3 m-1" type="submit">Save Changes</button>
+        /><Link to='/profile'>
+        <button className="border-amber-500 rounded-md bg-green-400 p-3 m-1" type="submit">Save Changes</button></Link>
       </form>
     </div>
     </div>
